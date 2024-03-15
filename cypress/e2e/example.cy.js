@@ -1,19 +1,12 @@
-describe('choose_departure_and_designation', () => {
-    it('selection_of_departure', () => {
-      cy.visit('https://blazedemo.com/')
-      cy.contains('h1', 'Welcome to the Simple Travel Agency!').should('be.visible')
-      cy.get('select[name="fromPort"]').select('Paris').should('have.value', 'Paris')
-    })
+describe('My First Test', () => {
+  it('input value', () => {
+    cy.visit('https://www.w3schools.com/')
+
+    //cy.get('.example').type('Python')
+    //cy.get('#search2').should('be.visible').and('be.enabled').type('python');
+    cy.get('button[type="submit"]').click()
+
+    //cy.get('.search2').type('hello')
+    
+  })
 })
-
-
-
-
-
-
-
-
-
-
-
-
