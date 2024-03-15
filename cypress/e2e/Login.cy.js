@@ -1,7 +1,8 @@
+
 describe('Login', () => {
     it('should login successfully with valid credentials', () => {
         // Visit the login page
-        cy.visit('https://asset-management-system-one.vercel.app/login');
+        cy.visit('login');
 
         // Type a valid username into the username input field
         cy.get('input[name="username"]').type('admin');
