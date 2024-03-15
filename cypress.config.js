@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   // Set the base URL for Cypress tests
-  // baseUrl: 'https://asset-management-system-one.vercel.app',
+   
 
   // Additional configurations or event listeners can be added here
   e2e: {

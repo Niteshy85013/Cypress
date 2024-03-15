@@ -10,3 +10,12 @@ describe('Checkbox Test', () => {
         cy.get('#layered_category_4').should('be.checked');
     });
 });
+
+
+
+
+
+
+
+
+
