@@ -1,0 +1,51 @@
+describe('Input Fields', ()=>{
+    it.only('Checking for Inputfields',()=>{
+        cy.visit('https://testautomationpractice.blogspot.com/')
+
+        cy.get('#name').type('Nitesh')
+        cy.get('#email').type('nitesh@gmail.com')
+        cy.get('#phone').type('9800000000')
+        cy.get('#textarea').type('This is a textarea field')
+
+        // Assertion Title
+        //cy.get('.title').should('have.text', 'Automation Testing Practice');
+        //cy.get(':nth-child(45) > [data-layer="Content"]').should('have.text', 'Automation Testing Practice');
+        //cy.contains(':nth-child(45) > [data-layer="Content"]','Automation Testing Practice').should('be.visible')
+
+
+        // For Radio buttons
+        cy.get('input[value="male"]').check();
+
+        // Aassertion for checkbox
+        cy.get('input[value="male"]').should('be.checked');
+
+
+        // Multiple selection
+        //cy.get('.form-check.form-check-inline input[type="checkbox"]').check();
+
+        // Single selection
+        cy.get('input[value="sunday"]').check();
+
+        // Assertion
+        cy.get('input[value="sunday"]').should('be.checked')
+
+        // Dropdown  menu 
+        cy.get('#country').select('uk')
+
+        // Assertion
+        cy.get('#country').should('have.value', 'uk');
+
+
+        // Select the options
+        cy.get('#colors').select('Green')
+        // Assertion
+        cy.get('[value="green"]').should('have.value', 'green');
+        
+
+    })
+
+    it('checking the total class with the same name',()=>{
+        cy.visit('https://testautomationpractice.blogspot.com/')
+        cy.get('.title')
+    })
+})

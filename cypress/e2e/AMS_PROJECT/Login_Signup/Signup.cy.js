@@ -28,7 +28,7 @@ describe('Signup Functionality', ()=>{
         cy.get('.user__auth--ques span').click()
     });
 
-    it('Checking the hyper link signup button', ()=>{
+    it.only('Checking the hyper link signup button', ()=>{
         cy.visit('login')
         cy.get('.user__auth--ques span').click()
     });
