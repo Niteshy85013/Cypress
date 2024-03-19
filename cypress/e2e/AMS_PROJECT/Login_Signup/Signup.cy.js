@@ -1,5 +1,5 @@
 describe('Signup Functionality', ()=>{
-    it.skip('', ()=>{
+    it('', ()=>{
         cy.visit('signup')
         cy.get('input[name="name"]').type('Testing Data')
         cy.get('input[name="username"]').type('testingdata')
@@ -18,12 +18,12 @@ describe('Signup Functionality', ()=>{
     });
 
     // Leaving all fields empty and clicking signup button
-    it.skip('Leave all fields empty', ()=>{
+    it('Leave all fields empty', ()=>{
         cy.visit('signup')
         cy.get('.user__auth--button, .button__style').click()
     });
 
-    it.skip('Checking the hyper link login button', ()=>{
+    it('Checking the hyper link login button', ()=>{
         cy.visit('signup')
         cy.get('.user__auth--ques span').click()
     });
