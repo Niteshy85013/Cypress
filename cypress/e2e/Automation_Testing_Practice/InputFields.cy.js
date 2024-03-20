@@ -48,8 +48,18 @@ describe('Input Fields', ()=>{
 
 
         // DatePicker
-        cy.get('#datepicker').type('2024-03-19')
+        //cy.get('#datepicker').type('2024-03-19')
+
+        cy.wait(3000)
+
+        //cy.get('.home-link').click()
         
+        // Table Value Checked
+        cy.get('#productTable').find('input[type="checkbox"]').eq(1).check();
+
+        // Assertion 
+        cy.get('#productTable').find('input[type="checkbox"]').eq(1).should('be.checked');
+
 
     })
 
