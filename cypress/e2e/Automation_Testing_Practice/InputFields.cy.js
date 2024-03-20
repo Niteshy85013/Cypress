@@ -55,10 +55,11 @@ describe('Input Fields', ()=>{
         //cy.get('.home-link').click()
         
         // Table Value Checked
-        cy.get('#productTable').find('input[type="checkbox"]').eq(1).check();
-
+        cy.get('#productTable').find('input[type="checkbox"]').eq(3).check();
         // Assertion 
-        cy.get('#productTable').find('input[type="checkbox"]').eq(1).should('be.checked');
+        cy.get('#productTable').find('input[type="checkbox"]').eq(3).should('be.checked');
+        cy.get('#productTable > tbody > :nth-child(4) > :nth-child(2)').should('have.text','Product 4')
+        cy.get('#productTable > tbody > :nth-child(4) > :nth-child(3)').should('have.text','$7.99')
 
 
     })
