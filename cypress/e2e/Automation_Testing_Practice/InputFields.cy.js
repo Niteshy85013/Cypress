@@ -62,6 +62,15 @@ describe('Input Fields', ()=>{
         cy.get('#productTable > tbody > :nth-child(4) > :nth-child(3)').should('have.text','$7.99')
 
 
+        // Search 
+        cy.get('#Wikipedia1_wikipedia-search-input').type('Menu')
+        cy.get('.wikipedia-search-button').click()
+
+
+ 
+                                
+
+
     })
 
     it('checking the total class with the same name',()=>{
