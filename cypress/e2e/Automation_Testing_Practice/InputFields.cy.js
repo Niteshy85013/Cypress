@@ -66,9 +66,8 @@ describe('Input Fields', ()=>{
         cy.get('#Wikipedia1_wikipedia-search-input').type('Menu')
         cy.get('.wikipedia-search-button').click()
 
-
- 
-                                
+        //Assertion
+        cy.get('#HTML4 > .title').should('have.text','New Browser Window')
 
 
     })
