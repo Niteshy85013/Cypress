@@ -1,9 +1,11 @@
 import { faker } from "@faker-js/faker"
+
+
 describe('Input Fields', ()=>{
     it.only('Checking for Inputfields',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
 
-         const name = faker.person.firstName()
+        const name = faker.person.firstName()
          const email = faker.internet.email()
          const phone = faker.phone.number()
 

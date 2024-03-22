@@ -12,7 +12,6 @@ describe('Signup Functionality', ()=>{
         cy.contains('.user__auth--ques p', 'Already have an account?').should('be.visible')
         // Wait for 5 sec
         cy.wait(5000)
-
     
         cy.get('.user__auth--button, .button__style').click()
     });
@@ -32,7 +31,5 @@ describe('Signup Functionality', ()=>{
         cy.visit('login')
         cy.get('.user__auth--ques span').click()
     });
-
-    
 
 });

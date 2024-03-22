@@ -13,17 +13,17 @@ describe('Login', () => {
     });
 
     // Invalid username and password 
-    // it('Invalid Username and password', ()=>{
-    //     cy.visit('login')
-    //     cy.get('input[name= "username"]').type("Admin1")
-    //     cy.get('input[name="password"]').type("Adminadmin")
-    //     cy.get('button[type="submit"]').click()
+    it('Invalid Username and password', ()=>{
+        cy.visit('login')
+        cy.get('input[name= "username"]').type("Admin1")
+        cy.get('input[name="password"]').type("Adminadmin")
+        cy.get('button[type="submit"]').click()
 
 
-    //     // Assertion
-    //     cy.contains('.user__auth--ques, .login__ques', 'Dont have an account?').should('be.visible');
+        // Assertion
+        cy.contains('.user__auth--ques, .login__ques', 'Dont have an account?').should('be.visible');
     
-    // });
+    });
 });
 
 
