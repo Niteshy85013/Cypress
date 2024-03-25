@@ -79,3 +79,10 @@ describe('Input Fields', ()=>{
         cy.get('.title')
     })
 })
+
+
+
+
+
+
+
