@@ -82,7 +82,10 @@ describe('Testing for Department Sections', () => {
         cy.login()
         cy.wait(3000)
         cy.visit('departments')
+        // Delete Icon 
         cy.get(':nth-child(1) > .button-gap > .delete__button').click()
+
+        // Proceed Button
         cy.get('.delete__confirmation--button > .button__blue').click()
     });
 
