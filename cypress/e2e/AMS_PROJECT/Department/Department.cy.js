@@ -87,13 +87,49 @@ describe('Testing for Department Sections', () => {
     });
 
     // Updating department
-
-    it.only('Updating Department',()=>{
+    it('Updating Department with valid data',()=>{
         cy.login()
         cy.wait(3000)
         cy.visit('departments')
         cy.get(':nth-child(1) > .button-gap > .edit__button').click()
         cy.get('.universal__td--border').type(department)
+     
+         
+       // Save icon
+        cy.get('.universal__FormButton button:first-child').should('be.visible').click()
+        // close icon
+        //cy.get('[type="button"]').should('be.visible').click();
 
-    })
+    });
+
+
+     // Updating department with invalid data
+     it('Updating Department with invalid data',()=>{
+        cy.login()
+        cy.wait(3000)
+        cy.visit('departments')
+        cy.get(':nth-child(1) > .button-gap > .edit__button').click()
+        cy.get('.universal__td--border').type('demo@')
+    
+       // Save icon
+        cy.get('.universal__FormButton button:first-child').should('be.visible').click()
+
+        // close icon
+        //cy.get('[type="button"]').should('be.visible').click();
+    });
+
+    // Updating department with blank data
+    it.only('Updating Department with invalid data',()=>{
+        cy.login()
+        cy.wait(3000)
+        cy.visit('departments')
+        cy.get(':nth-child(1) > .button-gap > .edit__button').click()
+        cy.get('.universal__td--border').type(' ')
+    
+       // Save icon
+        cy.get('.universal__FormButton button:first-child').should('be.visible').click()
+
+        // close icon
+        //cy.get('[type="button"]').should('be.visible').click();
+    });
 });

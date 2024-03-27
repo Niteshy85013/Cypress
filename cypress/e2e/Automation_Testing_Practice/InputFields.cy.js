@@ -56,7 +56,7 @@ describe('Input Fields', ()=>{
         cy.wait(3000)
 
         //cy.get('.home-link').click()
-        
+
         // Table Value Checked
         cy.get('#productTable').find('input[type="checkbox"]').eq(3).check();
         // Assertion 
