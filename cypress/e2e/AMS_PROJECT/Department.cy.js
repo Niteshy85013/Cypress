@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-
+const department = faker.commerce.department();
 describe('Testing for Department Sections', () => {
-    const department = faker.commerce.department();
+    
     it('Add Department', () => {
         cy.login()
 
