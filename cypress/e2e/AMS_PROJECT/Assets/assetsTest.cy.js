@@ -15,45 +15,47 @@ describe('Testing for Assets Section', () => {
         cy.get('input[name="productName"]').type(name);
         cy.get('input[name="brandCompany"]').type(name);
 
-        cy.get('.form--content__right').find(':nth-child(2) > .select__enabled').select('hardware');
+        cy.get('.form--content__right > :nth-child(2) > .select__enabled').select('Hardware');
 
         // Select a random category from the dropdown
-        // cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').then(dropdown => {
-        //     // Get the options within the dropdown
-        //     const options = Cypress.$(dropdown).find('option');
-        //     const randomIndex = Cypress._.random(options.length - 1);
-        //     const randomCategory = options.eq(randomIndex).text();
-        //     // Select the randomly picked category
-        //     cy.wrap(dropdown).select(randomCategory);
-        // });
+        cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
+            const options = Cypress.$(dropdown).find('[value]');
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
+            cy.wrap(dropdown).select(randomOptionText);
+        });
+        
 
-        cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
+        //cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
 
 
 
         // Select a random location from the dropdown
-        // cy.get('.form--content__left').find(':nth-child(2) > .select__enabled').then(dropdown => {
-        //     // Get the options within the dropdown
-        //     const options = Cypress.$(dropdown).find('option');
-        //     const randomIndex = Cypress._.random(options.length - 1);
-        //     const randomlocation = options.eq(randomIndex).text();
-        //     // Select the randomly picked location
-        //     cy.wrap(dropdown).select(randomlocation);
-        // });
+        cy.get('.form--content__left > :nth-child(2) > .select__enabled').then(dropdown => {
+            const options = Cypress.$(dropdown).find('.select__option');
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
+            
+            cy.wrap(dropdown).select(randomOptionText);
+        });
 
-        cy.get('.form--content__left').find(':nth-child(2) > .select__enabled').select('Top Floor')
+        //cy.get('.form--content__left').find(':nth-child(2) > .select__enabled').select('Top Floor')
          
 
         // Select a random Assign To from the dropdown
-        // cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').then(dropdown => {
-        //     // Get the options within the dropdown
-        //     const options = Cypress.$(dropdown).find('option');
-        //     const randomIndex = Cypress._.random(options.length - 1);
-        //     const randomAssign = options.eq(randomIndex).text();
-        //     // Select the randomly picked location
-        //     cy.wrap(dropdown).select(randomAssign);
-        // });
-        cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').select('rahul')
+        cy.get('.form--content__left > :nth-child(3) > .select__enabled').then(dropdown => {
+            const options = Cypress.$(dropdown).find('.select__option');
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
+            
+            cy.wrap(dropdown).select(randomOptionText);
+        });
+        
+
+        //cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').select('rahul')
          
         
 
@@ -76,3 +78,10 @@ describe('Testing for Assets Section', () => {
     });
 });
 
+
+
+
+// const options = Cypress.$(dropdown).find('option');
+            // const randomIndex = Cypress._.random(options.length - 1);
+            // const randomCategory = options.eq(randomIndex).text();
+            // // Select the randomly picked category
