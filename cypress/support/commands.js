@@ -41,8 +41,7 @@ Cypress.Commands.add('login', () => {
     
   });
 
-// const username = 'admin'
-// const password = 'Adminadmin1!'
+ 
 
 // Cypress.Commands.add('loginsession', (username, password) => {
 //   cy.session([username, password], () => {
