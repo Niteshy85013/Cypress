@@ -42,7 +42,7 @@ Cypress.Commands.add('login', () => {
   });
 
  
-
+// Session
 // Cypress.Commands.add('loginsession', (username, password) => {
 //   cy.session([username, password], () => {
 //     cy.visit('login')
@@ -51,6 +51,9 @@ Cypress.Commands.add('login', () => {
 //     cy.get('button[type="submit"]').click();
 //   })
 // })
+
+
+
 
 // Cypress.Commands.add('loginAndStartSession', () => {
 //   cy.visit('login');
