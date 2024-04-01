@@ -11,7 +11,7 @@ describe('Testing for Assets Section', () => {
     })
 
     // Add with valid data
-    it.only('Assets Add with valid data', () => {
+    it('Assets Add with valid data', () => {
         cy.visit('/assets');
        
         cy.get('.button__blue').click();
@@ -260,6 +260,27 @@ describe('Testing for Assets Section', () => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+// Update Assets
+
+it.only('Updating with valid Data',()=>{
+    cy.visit('/assets')
+    cy.get(':nth-child(1) > .button-gap > .edit__button').click()
+    cy.get('input[name="productName"]').type(name);
+    cy.wait(3000)
+
+    // Selecting category
+    cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Electronics')
+
+    cy.wait(3000)
+    cy.get('.status').click()
+
+
+    cy.get('.assets__form--btn > .button__blue').click()
+
+
+
+})
     //Deleting the Assets
     it('Deleting the Assets', ()=>{
         cy.visit('/assets')
