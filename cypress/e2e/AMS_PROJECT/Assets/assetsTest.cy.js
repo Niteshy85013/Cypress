@@ -11,7 +11,7 @@ describe('Testing for Assets Section', () => {
     })
 
     // Add with valid data
-    it('Assets Add with valid data', () => {
+    it.only('Assets Add with valid data', () => {
         cy.visit('/assets');
        
         cy.get('.button__blue').click();
@@ -21,23 +21,21 @@ describe('Testing for Assets Section', () => {
         cy.get('.form--content__right > :nth-child(2) > .select__enabled').select('Hardware');
             cy.wait(2000)
         // Select a random category from the dropdown
-        cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
-            const options = Cypress.$(dropdown).find('[value]');
+        // cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
+        //     const options = Cypress.$(dropdown).find('[value]');
             
-            const firstOption = options.first();
-            firstOption.remove();
-            const numOptions = options.length;
-            const randomIndex = Math.floor(Math.random() * numOptions);
-            const randomOptionText = options.eq(randomIndex).text();
-            cy.log(randomOptionText)
-            cy.wrap(dropdown).select(randomOptionText);
-        });
+        //     const firstOption = options.first();
+        //     firstOption.remove();
+        //     const numOptions = options.length;
+        //     const randomIndex = Math.floor(Math.random() * numOptions);
+        //     const randomOptionText = options.eq(randomIndex).text();
+        //     cy.log(randomOptionText)
+        //     cy.wrap(dropdown).select(randomOptionText);
+        // });
         
 
         cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
 
-
-    
         // Select a random location from the dropdown
         // cy.get('.form--content__left > :nth-child(2) > .select__enabled').then(dropdown => {
         //     const options = Cypress.$(dropdown).find('[value]');
@@ -81,7 +79,7 @@ describe('Testing for Assets Section', () => {
 
        // cy.wait(2000)
         // Image Upload
-        //cy.get('.upload__image--file > .button__blue').attachFile('faker.png')
+        cy.get('input[type="file"]').attachFile('faker.png')
         
         //cy.wait(5000)
          
@@ -249,7 +247,7 @@ describe('Testing for Assets Section', () => {
       });
 
       // Attemp to save the data with all fields empty
-      it.only('Attemp to save the data with all fields empty', () => {
+      it('Attemp to save the data with all fields empty', () => {
 
           cy.visit('/assets');
           cy.get('.button__blue').click();
