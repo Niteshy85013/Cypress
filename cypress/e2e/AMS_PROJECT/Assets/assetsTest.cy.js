@@ -7,11 +7,11 @@ const name = faker.commerce.productMaterial()
 
 describe('Testing for Assets Section', () => {
     beforeEach(()=>{
-        cy.loginsession("admin","Adminadmin1!")
+        cy.login()
     })
 
     // Add with valid data
-    it('Assets Add with valid data', () => {
+    it.only('Assets Add with valid data', () => {
         cy.visit('/assets');
        
         cy.get('.button__blue').click();
@@ -24,8 +24,8 @@ describe('Testing for Assets Section', () => {
         cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
             const options = dropdown.find('option:not(:first)')
             
-            const firstOption = options.first();
-            firstOption.remove();
+            // const firstOption = options.first();
+            // firstOption.remove();
             const numOptions = options.length;
             const randomIndex = Math.floor(Math.random() * numOptions);
             const randomOptionText = options.eq(randomIndex).text();
@@ -39,12 +39,12 @@ describe('Testing for Assets Section', () => {
         cy.wait(2000)
         // Select a random location from the dropdown
         cy.get('.form--content__left > :nth-child(2) > .select__enabled').then(dropdown => {
-            const options = dropdown.find('option:not(:first)')
-            const firstOption = options.first();
-            firstOption.remove();
-            const numOptions = options.length;
-            const randomIndex = Math.floor(Math.random() * numOptions);
-            const randomOptionText = options.eq(randomIndex).text();
+            const options1 = dropdown.find('option:not(:first)')
+            // const firstOption = options1.first();
+            // firstOption.remove();
+            const numOptions1 = options1.length;
+            const randomIndex = Math.floor(Math.random() * numOptions1);
+            const randomOptionText = options1.eq(randomIndex).text();
             
             
             cy.wrap(dropdown).select(randomOptionText);
@@ -56,12 +56,12 @@ describe('Testing for Assets Section', () => {
         cy.wait(2000)
         // Select a random Assign To from the dropdown
         cy.get('.form--content__left > :nth-child(3) > .select__enabled').then(dropdown => {
-            const options = dropdown.find('option:not(:first)')
-            const firstOption = options.first();
-            firstOption.remove();
-            const numOptions = options.length;
-            const randomIndex = Math.floor(Math.random() * numOptions);
-            const randomOptionText = options.eq(randomIndex).text();
+            const options2 = dropdown.find('option:not(:first)')
+            //const firstOption = options.first();
+           // firstOption.remove();
+            const numOptions2 = options2.length;
+            const randomIndex = Math.floor(Math.random() * numOptions2);
+            const randomOptionText = options2.eq(randomIndex).text();
             
             cy.wrap(dropdown).select(randomOptionText);
         });
@@ -69,8 +69,6 @@ describe('Testing for Assets Section', () => {
 
         //cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').select('rahul')
          
-    
-
         // // Assert that the button is initially in the inactive state
         // cy.get('.toggle-button-selector').should('have.class', 'inactive'); 
 
@@ -84,7 +82,7 @@ describe('Testing for Assets Section', () => {
         // Image Upload
         cy.get('input[type="file"]').attachFile('faker.png')
         
-        //cy.wait(5000)
+        cy.wait(3000)
          
         cy.get('.assets__form--btn > .button__blue').click()
     });
@@ -263,7 +261,7 @@ describe('Testing for Assets Section', () => {
 
 // Update Assets
 
-it.only('Updating with valid Data',()=>{
+it('Updating with valid Data',()=>{
     cy.visit('/assets')
     cy.get(':nth-child(1) > .button-gap > .edit__button').click()
     cy.get('input[name="productName"]').type(name);
@@ -281,6 +279,8 @@ it.only('Updating with valid Data',()=>{
 
 
 })
+
+
     //Deleting the Assets
     it('Deleting the Assets', ()=>{
         cy.visit('/assets')

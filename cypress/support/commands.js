@@ -25,8 +25,6 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 
-
-
 // Cypress.Commands.add('login', () => {
 //     // Visit the login page
 //     cy.visit('login');
@@ -37,14 +35,13 @@
   
 //     // Click on the login button
 //     cy.get('button[type="submit"]').click();
-  
-    
 //   });
 
  
 // Session
 Cypress.Commands.add('loginsession', (username, password) => {
   cy.session([username, password], () => {
+    
     cy.visit('login')
     cy.get('input[name="username"]').type(username)
     cy.get('input[name="password"]').type(password)
@@ -53,8 +50,9 @@ Cypress.Commands.add('loginsession', (username, password) => {
   })
 })
 
-
-
+Cypress.Commands.add('login', () => {
+    cy.loginsession("admin","Adminadmin1!")
+  });
 
 // Cypress.Commands.add('loginAndStartSession', () => {
 //   cy.visit('login');

@@ -1,7 +1,7 @@
 
 describe('Sorting', () => {
     beforeEach(()=>{
-        cy.loginsession("admin","Adminadmin1!")
+        cy.login()
     })
 
     it('sorting by name', () => {

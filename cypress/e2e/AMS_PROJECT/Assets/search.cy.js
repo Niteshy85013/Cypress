@@ -1,6 +1,6 @@
 describe('',()=>{
     beforeEach(()=>{
-        cy.loginsession("admin","Adminadmin1!")
+        cy.login()
     })
 
 
