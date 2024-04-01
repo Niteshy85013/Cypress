@@ -1,7 +1,8 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  // Set the base URL for Cypress tests
+  
+  
    
   // Additional configurations or event listeners can be added here
   e2e: {
@@ -11,4 +12,8 @@ module.exports = defineConfig({
       // For example, you can use this hook to listen to events during test runs
     },
   },
+  
 });
+
+
+ 
