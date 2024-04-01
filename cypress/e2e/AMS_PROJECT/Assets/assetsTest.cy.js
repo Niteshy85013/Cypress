@@ -73,17 +73,17 @@ describe('Testing for Assets Section', () => {
         // cy.get('.toggle-button-selector').should('have.class', 'inactive'); 
 
         // // Click on the toggle button to activate it
-        // cy.get('.toggle-button-selector').click();
+        cy.get('.status').click();
 
-        // // Assert that the button is now in the active state
-        // cy.get('.toggle-button-selector').should('have.class', 'active');  
-
-       // cy.wait(2000)
         // Image Upload
-        cy.get('input[type="file"]').attachFile('faker.png')
+        cy.fixture('faker.png').then((fileContent) => {
+            cy.get('input[type="file"]').attachFile('faker.png');
+          });
+          
+        //cy.get('input[type="file"]').attachFile('faker.png')
         
         cy.wait(3000)
-         
+        
         cy.get('.assets__form--btn > .button__blue').click()
     });
 
