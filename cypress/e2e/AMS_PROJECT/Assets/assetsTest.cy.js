@@ -6,15 +6,13 @@ const brand = faker.company.name()
 const name = faker.commerce.productMaterial()
 
 describe('Testing for Assets Section', () => {
-    // beforeEach(()=>{
-    //     cy.loginsession("admin","Adminadmin1!")
-    // })
+    beforeEach(()=>{
+        cy.loginsession("admin","Adminadmin1!")
+    })
 
     // Add with valid data
     it('Assets Add with valid data', () => {
-      cy.login()
-      cy.wait(3000)
-        cy.visit('assets');
+        cy.visit('/assets');
        
         cy.get('.button__blue').click();
         cy.get('input[name="productName"]').type(name);
@@ -23,17 +21,17 @@ describe('Testing for Assets Section', () => {
         cy.get('.form--content__right > :nth-child(2) > .select__enabled').select('Hardware');
             cy.wait(2000)
         // Select a random category from the dropdown
-        // cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
-        //     const options = Cypress.$(dropdown).find('[value]');
+        cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
+            const options = Cypress.$(dropdown).find('[value]');
             
-        //     const firstOption = options.first();
-        //     firstOption.remove();
-        //     const numOptions = options.length;
-        //     const randomIndex = Math.floor(Math.random() * numOptions);
-        //     const randomOptionText = options.eq(randomIndex).text();
-        //     cy.log(randomOptionText)
-        //     cy.wrap(dropdown).select(randomOptionText);
-        // });
+            const firstOption = options.first();
+            firstOption.remove();
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
+            cy.log(randomOptionText)
+            cy.wrap(dropdown).select(randomOptionText);
+        });
         
 
         cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
@@ -92,9 +90,8 @@ describe('Testing for Assets Section', () => {
 
     // Add With Invalid Product Name
     it('Assets Add with valid data', () => {
-        cy.login()
-        cy.wait(3000)
-          cy.visit('assets');
+        
+          cy.visit('/assets');
          
           cy.get('.button__blue').click();
           cy.get('input[name="productName"]').type('DemoTest@123');
@@ -172,9 +169,8 @@ describe('Testing for Assets Section', () => {
 
     // Add With Blank Product Name
     it('Assets Add with valid data', () => {
-        cy.login()
-        cy.wait(3000)
-          cy.visit('assets');
+         
+          cy.visit('/assets');
          
           cy.get('.button__blue').click();
           cy.get('input[name="productName"]').type(' ');
@@ -252,13 +248,20 @@ describe('Testing for Assets Section', () => {
           cy.get('.assets__form--btn > .button__blue').click()
       });
 
+      // Attemp to save the data with all fields empty
+      it.only('Attemp to save the data with all fields empty', () => {
+
+          cy.visit('/assets');
+          cy.get('.button__blue').click();
+          cy.get('.assets__form--btn > .button__blue').click()
+      });
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     //Deleting the Assets
     it('Deleting the Assets', ()=>{
-         
-        cy.wait(3000)
-        cy.visit('assets')
+        cy.visit('/assets')
         cy.url().should('contains',"assets")
         // Delete Icon 
         cy.get(':nth-child(1) > .button-gap > .delete__button').click()
@@ -268,10 +271,9 @@ describe('Testing for Assets Section', () => {
     });
 
     //View Detail of Asstes
-    it.only('Deleting the Asstes', ()=>{
-     cy.login()
-        cy.wait(2000)
-        cy.visit('assets')
+    it('Deleting the Asstes', ()=>{
+      
+        cy.visit('/assets')
         // cy.url().should('contains',"assets")
         // View Icon 
         cy.get(':nth-child(1) > .button-gap > .view__button').click()

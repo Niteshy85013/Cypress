@@ -27,30 +27,31 @@
 
 
 
-Cypress.Commands.add('login', () => {
-    // Visit the login page
-    cy.visit('login');
+// Cypress.Commands.add('login', () => {
+//     // Visit the login page
+//     cy.visit('login');
   
-    // Fill in the username and password fields
-    cy.get('input[name="username"]').type('admin');
-    cy.get('input[name="password"]').type('Adminadmin1!');
+//     // Fill in the username and password fields
+//     cy.get('input[name="username"]').type('admin');
+//     cy.get('input[name="password"]').type('Adminadmin1!');
   
-    // Click on the login button
-    cy.get('button[type="submit"]').click();
+//     // Click on the login button
+//     cy.get('button[type="submit"]').click();
   
     
-  });
+//   });
 
  
 // Session
-// Cypress.Commands.add('loginsession', (username, password) => {
-//   cy.session([username, password], () => {
-//     cy.visit('login')
-//     cy.get('input[name="username"]').type(username)
-//     cy.get('input[name="password"]').type(password)
-//     cy.get('button[type="submit"]').click();
-//   })
-// })
+Cypress.Commands.add('loginsession', (username, password) => {
+  cy.session([username, password], () => {
+    cy.visit('login')
+    cy.get('input[name="username"]').type(username)
+    cy.get('input[name="password"]').type(password)
+    cy.get('button[type="submit"]').click();
+    cy.wait(3000)
+  })
+})
 
 
 
