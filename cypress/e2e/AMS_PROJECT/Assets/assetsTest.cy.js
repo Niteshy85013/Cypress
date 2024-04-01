@@ -21,50 +21,53 @@ describe('Testing for Assets Section', () => {
         cy.get('.form--content__right > :nth-child(2) > .select__enabled').select('Hardware');
             cy.wait(2000)
         // Select a random category from the dropdown
-        // cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
-        //     const options = Cypress.$(dropdown).find('[value]');
+        cy.get('.form--content__right > :nth-child(3) > .select__enabled').then(dropdown => {
+            const options = dropdown.find('option:not(:first)')
             
-        //     const firstOption = options.first();
-        //     firstOption.remove();
-        //     const numOptions = options.length;
-        //     const randomIndex = Math.floor(Math.random() * numOptions);
-        //     const randomOptionText = options.eq(randomIndex).text();
-        //     cy.log(randomOptionText)
-        //     cy.wrap(dropdown).select(randomOptionText);
-        // });
+            const firstOption = options.first();
+            firstOption.remove();
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
+            cy.log(randomOptionText)
+            cy.wrap(dropdown).select(randomOptionText);
+        });
         
 
-        cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
+        //cy.get('.form--content__right').find(':nth-child(3) > .select__enabled').select('Furniture')
 
+        cy.wait(2000)
         // Select a random location from the dropdown
-        // cy.get('.form--content__left > :nth-child(2) > .select__enabled').then(dropdown => {
-        //     const options = Cypress.$(dropdown).find('[value]');
-        //     const firstOption = options.first();
-        //     firstOption.remove();
-        //     const numOptions = options.length;
-        //     const randomIndex = Math.floor(Math.random() * numOptions);
-        //     const randomOptionText = options.eq(randomIndex).text();
+        cy.get('.form--content__left > :nth-child(2) > .select__enabled').then(dropdown => {
+            const options = dropdown.find('option:not(:first)')
+            const firstOption = options.first();
+            firstOption.remove();
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
             
-        //     cy.wrap(dropdown).select(randomOptionText);
-        // });
+            
+            cy.wrap(dropdown).select(randomOptionText);
+        });
 
-        cy.get('.form--content__left').find(':nth-child(2) > .select__enabled').select('Top Floor')
+        //cy.get('.form--content__left').find(':nth-child(2) > .select__enabled').select('Top Floor')
          
  
+        cy.wait(2000)
         // Select a random Assign To from the dropdown
-        // cy.get('.form--content__left > :nth-child(3) > .select__enabled').then(dropdown => {
-        //     const options = Cypress.$(dropdown).find('[value]');
-        //     const firstOption = options.first();
-        //     firstOption.remove();
-        //     const numOptions = options.length;
-        //     const randomIndex = Math.floor(Math.random() * numOptions);
-        //     const randomOptionText = options.eq(randomIndex).text();
+        cy.get('.form--content__left > :nth-child(3) > .select__enabled').then(dropdown => {
+            const options = dropdown.find('option:not(:first)')
+            const firstOption = options.first();
+            firstOption.remove();
+            const numOptions = options.length;
+            const randomIndex = Math.floor(Math.random() * numOptions);
+            const randomOptionText = options.eq(randomIndex).text();
             
-        //     cy.wrap(dropdown).select(randomOptionText);
-        // });
+            cy.wrap(dropdown).select(randomOptionText);
+        });
         
 
-        cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').select('rahul')
+        //cy.get('.form--content__left').find(':nth-child(3) > .select__enabled').select('rahul')
          
     
 
