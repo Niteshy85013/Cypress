@@ -6,7 +6,7 @@ const email = faker.internet.email();
 describe('Employees section Testing', () => {
     beforeEach(()=>{
         cy.login()
-        cy.viewport(400, 800);
+        
     });
 
     // Adding Employees with valid data

@@ -62,10 +62,6 @@ Cypress.Commands.add('login', () => {
   });
 
 
-
-
-
-
 // Cypress.Commands.add('loginAndStartSession', () => {
 //   cy.visit('login');
 //   cy.get('input[name="username"]').type('admin');

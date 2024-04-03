@@ -1,4 +1,4 @@
-describe('',()=>{
+describe('Testing Search Functionality',()=>{
     beforeEach(()=>{
         cy.login()
     })
