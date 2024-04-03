@@ -54,6 +54,18 @@ Cypress.Commands.add('login', () => {
     cy.loginsession("admin","Adminadmin1!")
   });
 
+
+
+  // Viewport
+  Cypress.Commands.add('viewViewport', () => {
+    cy.viewport(390, 844)
+  });
+
+
+
+
+
+
 // Cypress.Commands.add('loginAndStartSession', () => {
 //   cy.visit('login');
 //   cy.get('input[name="username"]').type('admin');

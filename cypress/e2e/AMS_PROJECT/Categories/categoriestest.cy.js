@@ -3,9 +3,16 @@ import { faker } from "@faker-js/faker";
 const category = faker.commerce.department();
 
 describe('Testing for Categories',()=>{
-    beforeEach(() => cy.login());
+    beforeEach(() => 
+    cy.login()
+    
+   
+    
+    );
+    
 
-    it('Parent category adding',()=>{
+    it.only('Parent category adding',()=>{
+        cy.viewViewport()
         cy.visit('/categories')
 
         // Selecting Parent Category
@@ -14,7 +21,7 @@ describe('Testing for Categories',()=>{
         cy.get('.button__blue').should('be.visible').click()
     })
 
-   
+
     it('Creating Child Category',()=>{
         cy.visit('/categories')
         cy.wait(3000)
@@ -64,7 +71,7 @@ describe('Testing for Categories',()=>{
     });
 
 
-    it.only('Creating invalid child Category',()=>{
+    it('Creating invalid child Category',()=>{
         cy.visit('/categories')
         
         // Entering Child Category
