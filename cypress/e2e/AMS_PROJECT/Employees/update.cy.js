@@ -32,7 +32,6 @@ describe('Testing for Employees Update Functionality', () => {
 
         cy.get('.button__blue').click()
         
-
     })
 
 });
