@@ -63,25 +63,31 @@ Cypress.Commands.add('login', () => {
 
 
 
-  /////////// Deginations  /////////////////////
+  Cypress.Commands.add('getLocalStorage', (key) => {
+    cy.window().then((window) => {
+        return window.localStorage.getItem(key);
+    });
+  });
 
-  // Import the faker library in your support/commands.js file
-// import faker from 'faker';
+Cypress.Commands.add('logout', () => {
+  // Clear authentication token from local storage
+  cy.clearLocalStorage('Token');
 
-// // Define a custom Cypress command to generate a truncated job title
-// Cypress.Commands.add('designations', () => {
-//   // Set the maximum character limit
-//   const maxLength = 5;
+  // Check local storage to ensure authToken is null after clearing
+  cy.getLocalStorage('Token').should('be.null');
+  
+  // Redirect user to login page
+  cy.visit('/login');
+  cy.url().should('include', '/login');
+});
 
-//   // Generate a random job title
-//   let designation = faker.name.jobTitle();
 
-//   // Truncate the job title to the maximum character limit
-//   designation = designation.substring(0, maxLength);
+  
+  
+  
 
-//   // Return the truncated job title
-//   return designation;
-// });
+
+  
 
 
 // Cypress.Commands.add('loginAndStartSession', () => {
