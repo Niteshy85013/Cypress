@@ -62,6 +62,28 @@ Cypress.Commands.add('login', () => {
   });
 
 
+
+  /////////// Deginations  /////////////////////
+
+  // Import the faker library in your support/commands.js file
+// import faker from 'faker';
+
+// // Define a custom Cypress command to generate a truncated job title
+// Cypress.Commands.add('designations', () => {
+//   // Set the maximum character limit
+//   const maxLength = 5;
+
+//   // Generate a random job title
+//   let designation = faker.name.jobTitle();
+
+//   // Truncate the job title to the maximum character limit
+//   designation = designation.substring(0, maxLength);
+
+//   // Return the truncated job title
+//   return designation;
+// });
+
+
 // Cypress.Commands.add('loginAndStartSession', () => {
 //   cy.visit('login');
 //   cy.get('input[name="username"]').type('admin');

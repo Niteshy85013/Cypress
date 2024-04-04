@@ -10,25 +10,27 @@ describe('Employees section Testing', () => {
     });
 
     // Adding Employees with valid data
-    it('Adding Employees',()=>{
+    it.only('Adding Employees',()=>{
 
         cy.visit('/employees')
         cy.get('.button__blue').should('be.visible').click()
         cy.get('input[name="username"]').type('DemoAdmin')
         cy.get('input[name="designation"]').type('QA')
-        cy.get(':nth-child(4) > .input-enabled').select('Books')
+        cy.get(':nth-child(4) > .input-enabled').select('QA')
       
         cy.get('input[name="email"]').type(email)
 
-        cy.get('input[name="phoneNumber"]').type('9852011111')
+        cy.get('input[name="phoneNumber"]').type('9852011112')
 
         cy.fixture('demo.jpg').then((fileContent) => {
             cy.get('input[type="file"]').attachFile('demo.jpg');
           });
 
           cy.wait(2000)
-
         cy.get('.user__profile--btn > .button__blue').should('be.visible').click()
+
+         // Toast message assertion
+        cy.get('.toast__paragraph').should('have.text','Employee has been added')
     });
 
     // Adding Employees with Existing Data
@@ -73,7 +75,7 @@ describe('Employees section Testing', () => {
     });
 
     // Submitting the form without entering data
-    it.only('Adding Employees',()=>{
+    it('Adding Employees',()=>{
 
         cy.visit('/employees')
         cy.get('.button__blue').should('be.visible').click()

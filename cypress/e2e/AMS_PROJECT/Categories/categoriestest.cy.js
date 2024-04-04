@@ -5,11 +5,7 @@ const category = faker.commerce.department();
 describe('Testing for Categories',()=>{
     beforeEach(() => 
     cy.login()
-    
-   
-    
     );
-    
 
     it.only('Parent category adding',()=>{
         cy.viewViewport()
@@ -94,11 +90,4 @@ describe('Testing for Categories',()=>{
         cy.get('.button__blue').should('be.visible').click()
 
     });
-
-
-
-
-
-
-
 });
