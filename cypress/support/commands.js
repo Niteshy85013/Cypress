@@ -75,7 +75,7 @@ Cypress.Commands.add('logout', () => {
 
   // Check local storage to ensure authToken is null after clearing
   cy.getLocalStorage('Token').should('be.null');
-  
+
   // Redirect user to login page
   cy.visit('/login');
   cy.url().should('include', '/login');
@@ -90,60 +90,15 @@ Cypress.Commands.add('logout', () => {
   
 
 
-// Cypress.Commands.add('loginAndStartSession', () => {
-//   cy.visit('login');
-//   cy.get('input[name="username"]').type('admin');
-//   cy.get('input[name="password"]').type('Adminadmin1!');
-//   cy.get('button[type="submit"]').click();
+ 
 
-//   cy.wait(3000);
-  
-//   // Retrieve the authentication token from local storage
-//   cy.window().then(win => {
-//     const authToken = win.localStorage.getItem('authToken');
-//     if (!authToken) {
-//       throw new Error('Authentication token not found in local storage');
-//     }
-//     // Store the authentication token in the Cypress environment
-//     Cypress.env('authToken', authToken);
-//   });
-// });
+ 
 
 
 
 
 
-// Cypress.Commands.add('loginAndStartSession', () => {
-//   cy.request({
-//     method: 'POST',
-//     url: 'login',  
-//     body: {
-//       username: 'admin',
-//       password: 'Adminadmin1!'
-//     }
-//   }).then((response) => {
-//     if (response.status !== 200) {
-//       throw new Error('Failed to login. Status: ' + response.status);
-//     }
-//     // Retrieve the authentication token from the response body
-//     const authToken = response.body.authToken;
-
-//     // Check if the authentication token exists
-//     if (!authToken) {
-//       throw new Error('Authentication token not found in response body');
-//     }
-//     // Store the authentication token in local storage
-//     cy.window().then(win => {
-//       win.localStorage.setItem('authToken', authToken);
-//     });
-
-//     cy.window().then(win => {
-//       win.localStorage.getItem('authToken', authToken);
-//     });
-//     // Store the authentication token in the Cypress environment
-//     Cypress.env('authToken', authToken);
-//   });
-// });
+ 
 
  
   
