@@ -94,8 +94,6 @@ describe('Testing for Repair Section', () => {
         cy.fixture('profile.png').then((fileContent)=>{
             cy.get('input[type="file"]').attachFile('profile.png')
         })
-
-
         cy.wait(2000)
 
         cy.get('.user__profile--btn-right > .button__blue').should('be.visible').click()

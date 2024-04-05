@@ -57,27 +57,23 @@ Cypress.Commands.add('login', () => {
   });
 
 
-
   // Viewport
   Cypress.Commands.add('viewViewport', () => {
     cy.viewport(390, 844)
   });
 
 
-
+// Logout
   Cypress.Commands.add('getLocalStorage', (key) => {
     cy.window().then((window) => {
         return window.localStorage.getItem(key);
     });
   });
-
 Cypress.Commands.add('logout', () => {
   // Clear authentication token from local storage
   cy.clearLocalStorage('Token');
-
   // Check local storage to ensure authToken is null after clearing
   cy.getLocalStorage('Token').should('be.null');
-
   // Redirect user to login page
   cy.visit('/login');
   cy.url().should('include', '/login');
