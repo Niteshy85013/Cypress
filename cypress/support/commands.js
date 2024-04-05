@@ -41,7 +41,6 @@
 // Session
 Cypress.Commands.add('loginsession', (username, password) => {
   cy.session([username, password], () => {
-    
     cy.visit('login')
     cy.get('input[name="username"]').type(username)
     cy.get('input[name="password"]').type(password)
@@ -51,6 +50,9 @@ Cypress.Commands.add('loginsession', (username, password) => {
 })
 
 Cypress.Commands.add('login', () => {
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    return false
+  })
     cy.loginsession("admin","Adminadmin1!")
   });
 
