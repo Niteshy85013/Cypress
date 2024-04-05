@@ -10,8 +10,7 @@ function RandomBrand() {
 // Call Function
 const randomBrandName = RandomBrand();
 
-// Created this variable to use this variable in multiple test 
-const brandname = randomBrandName;
+ 
 
 describe('Testing for procurement Section',()=>{
     beforeEach(()=>{
@@ -74,7 +73,7 @@ describe('Testing for procurement Section',()=>{
         // Brand Name
        
  
-        cy.get('[data-cell="Brand"] > .input__field > .toggle__showHide--container > .input-enabled').type(brandname)
+        cy.get('[data-cell="Brand"] > .input__field > .toggle__showHide--container > .input-enabled').type(randomBrandName)
 
         // Price
         cy.get('[data-cell="Estimated Price"] > .input__field > .toggle__showHide--container > .input-enabled').type('$1000')
