@@ -72,13 +72,28 @@ describe('Input Fields', ()=>{
         //Assertion
         cy.get('#HTML4 > .title').should('have.text','New Browser Window')
 
+        // Alerts
+    cy.get('[onclick="myFunctionAlert()"]').click()
+    cy.wait(3000)
 
-    })
+    cy.get('[onclick="myFunctionConfirm()"]').click()
+    cy.wait(5000)
+
+    cy.get('[onclick="myFunctionPrompt()"]').click()
+    cy.wait(5000)
+
+        // dblclick
+        cy.get('#HTML10 > .widget-content > button').dblclick()
+    });
+
+    
 
     it('checking the total class with the same name',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
         cy.get('.title')
-    })
+    });
+
+    
 })
 
 
