@@ -13,7 +13,7 @@ const randomBrandName = RandomBrand();
 describe('Update Procurement',()=>{
     beforeEach(()=>{
         cy.login()
-    })
+    });
 
     it.only('Update procurement which have one product',()=>{
         cy.visit('/procurement')
@@ -56,5 +56,44 @@ describe('Update Procurement',()=>{
         cy.wait(4000)
         // Update Procurement Button
         cy.get('.procurement--button').should('be.visible').click()
-    })
-})
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
