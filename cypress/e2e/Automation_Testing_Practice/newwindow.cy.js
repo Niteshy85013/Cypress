@@ -8,6 +8,7 @@ describe("File Upload",()=>{
 
         // // Asserting URL
         cy.url().should('include','/new')
+        cy.go('back');
     });
 });
 
