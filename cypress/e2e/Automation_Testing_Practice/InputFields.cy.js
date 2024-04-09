@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-
+import 'cypress-iframe'
 
 describe('Input Fields', ()=>{
 
@@ -87,15 +87,25 @@ describe('Input Fields', ()=>{
         cy.get('#HTML10 > .widget-content > button').dblclick()
     });
 
-    it.only('Drag and Drop',()=>{
+    it('Drag and Drop',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
         cy.get('#draggable').drag('#droppable')
     })
 
-    it('checking the total class with the same name',()=>{
+    it.only('iFrame  Testing', () => {
         cy.visit('https://testautomationpractice.blogspot.com/')
-        cy.get('.title')
-    });
+        // Verify page 
+        cy.frameLoaded()
+
+        // Title Assertion 
+        cy.iframe().find('.title').should('have.text', 'Frames');
+
+        // Input Field
+        cy.iframe().find('#RESULT_TextField-0').type('Dummy Text');
+
+        // Submit Button
+        cy.iframe().find('#FSsubmit').should('be.visible').click()
+    })
 
 })
 
