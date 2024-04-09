@@ -91,13 +91,12 @@ describe('Input Fields', ()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
         cy.get('#draggable').drag('#droppable')
     })
-    
+
     it('checking the total class with the same name',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
         cy.get('.title')
     });
 
-    
 })
 
 
