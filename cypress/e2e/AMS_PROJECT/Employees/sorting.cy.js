@@ -6,7 +6,8 @@ describe('Testing for sorting in Employees sections', () => {
     it('Sort by user in ascending order', () => {
         cy.visit('/employees')
         // Click on the user column header to sort in ascending order
-        cy.get('thead > :nth-child(2)').click();
+        cy.get('.selected-tablehead').click();
+        
     });
 
     it.only('Sort by user in descending order', () => {

@@ -1,8 +1,7 @@
-
 describe('Sorting', () => {
     beforeEach(()=>{
         cy.login()
-    })
+    });
 
     it('sorting by name', () => {
         cy.visit('/assets');
@@ -12,27 +11,32 @@ describe('Sorting', () => {
         cy.wait(3000);
     
         // Retrieve the names from the table in ascending order
-        cy.get('tbody > tr > td:nth-child(2)').invoke('text').then(names => {
+        cy.get('tbody > tr > td:nth-child(2)').then(names => {
             const sortedNames = names.slice().sort();
-            expect(names).to.deep.equal(sortedNames, 'Names are not in ascending order');
+            expect(names).to.deep.equal(sortedNames, 'Names are in ascending order');
         });
     });
+
+    // it.only('sorting by name', () => {
+    //     cy.visit('/assets');
+    
+    //     // Click to sort in descending order
+    //     cy.get('thead > :nth-child(2)').dblclick();
+    //     cy.get('tbody > tr > td:nth-child(2)').should('have.length.gt', 1);
+    //     cy.get('tbody > tr > td:nth-child(2)').then(namess => {
+    //         const sortedNamess = namess.slice().sort().reverse;
+    //         expect(namess).to.deep.equal(sortedNamess, 'Names are in descending order');
+             
+    //     });
+    // });
+    
     
     
     
 });
 
 
-// Descending order
-// cy.get('thead > :nth-child(2)').click();
-// cy.wait(5000);
-
-// // Retrieve the names from the table in descending order
-// cy.get('tbody > tr > td:nth-child(2)').invoke('text').then(names => {
-//     const sortedNames = names.slice().sort().reverse();
-//     expect(names).to.deep.equal(sortedNames, 'Names are not in descending order');
-// });
-
+ 
 
 
 

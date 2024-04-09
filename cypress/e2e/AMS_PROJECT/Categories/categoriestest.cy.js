@@ -7,7 +7,7 @@ describe('Testing for Categories',()=>{
     cy.login()
     );
 
-    it.only('Parent category adding',()=>{
+    it.only('adding Parent category ',()=>{
         cy.viewViewport()
         cy.visit('/categories')
 
@@ -15,8 +15,10 @@ describe('Testing for Categories',()=>{
         cy.get('.input-enabled').type(category)
         // Add Category button
         cy.get('.button__blue').should('be.visible').click()
-    })
 
+        // Asserting Toast Message
+        cy.get('.toast__paragraph').should('have.text','Category has been added')
+    })
 
     it('Creating Child Category',()=>{
         cy.visit('/categories')
@@ -42,15 +44,15 @@ describe('Testing for Categories',()=>{
 
     });
 
-    // Adding blank Parent Category
-    it('Adding invalid Parent Category',()=>{
+   
+    it('Attempt to add blank data',()=>{
         cy.visit('/categories')
          
          // Add Category button
          cy.get('.button__blue').should('be.visible').click()
     });
 
-    // Adding invalid Parent Category
+    
     it('Adding invalid Parent Category',()=>{
         cy.visit('/categories')
         cy.get('.input-enabled').type('Parent@category')
@@ -58,7 +60,7 @@ describe('Testing for Categories',()=>{
          cy.get('.button__blue').should('be.visible').click()
     });
 
-     // Adding invalid Parent Category
+    
      it('Adding invalid Parent Category',()=>{
         cy.visit('/categories')
         cy.get('.input-enabled').type(' Parentcategory')

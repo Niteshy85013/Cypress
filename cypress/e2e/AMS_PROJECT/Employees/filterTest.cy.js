@@ -22,18 +22,55 @@ describe('Test for Filter section',()=>{
 
     });
 
-    it.only('Filtering with Invalid Data',()=>{
+    it('Only Department Filter selected',()=>{
         cy.visit('/employees')
         cy.get('.filter--button').click()
 
         // Selecting Departmeent name
-        cy.get('.input-enabled').select('Backendss')
+        cy.get('.input-enabled').select('Backend')
 
         // Clear all filter Button
         //cy.get('.button__red').click()
 
         // Apply Button
         cy.get('.filter__button--flex > .button__blue').click()
+         
+
+    });
+
+    it('Only Designation Filter selected',()=>{
+        cy.visit('/employees')
+        cy.get('.filter--button').click()
+    
+        cy.get('.select__enabled').select('hrtr')
+
+        // Clear all filter Button
+        //cy.get('.button__red').click()
+
+        // Apply Button
+        cy.get('.filter__button--flex > .button__blue').click()
+         
+
+    });
+
+    it.only('Filtering department and designation with no employee',()=>{
+        cy.visit('/employees')
+        cy.get('.filter--button').click()
+
+        // Selecting Departmeent name
+        cy.get('.input-enabled').select('Management')
+
+        // Selecting Degination
+        cy.get('.select__enabled').select('designer')
+
+        // Clear all filter Button
+        //cy.get('.button__red').click()
+
+        // Apply Button
+        cy.get('.filter__button--flex > .button__blue').click()
+
+        // Assertion
+        cy.get('.empty-table-message > p').should('have.text','No data available')
          
 
     });

@@ -10,11 +10,9 @@ const designation = faker.name.jobTitle().substring(0, maxLength);
 
 describe('Testing for Employees Update Functionality', () => {
     beforeEach(() => {
-        // Login before each test case
         cy.login();
     });
 
-    // Updating with valid Data
     it('Updating with valid data', () => {
         cy.visit('/employees');
 
@@ -34,7 +32,6 @@ describe('Testing for Employees Update Functionality', () => {
         
         cy.get('input[name="designation"]').clear().type(designation);
 
-
         cy.get(':nth-child(4) > .input-enabled').select('QA')
         // Update email
         cy.get('input[name="email"]').clear().type(email);
@@ -45,17 +42,22 @@ describe('Testing for Employees Update Functionality', () => {
         // Delete the previous image (if needed)
         cy.get('.profile__button--container > .button__red').click();
 
+        cy.wait(3000)
         // Upload a new image
         cy.fixture('profile.png').then((fileContent) => {
             cy.get('input[type="file"]').attachFile('profile.png');
         });
 
+        
+
         // Click on the "Save Changes" button
-        cy.get('.button__blue').click();
+        cy.get('.button__blue').should('be.visible').click();
+
+        cy.get('.toast__paragraph').should('have.text','Employee Edited Successfully')
     });
 
-    // Attempt to Updating without any changes in data
-    it('Updating with no changes in data', () => {
+   
+    it('Attempt to Updating without any changes in data', () => {
         cy.visit('/employees');
 
         // Click on the edit button for the first employee
@@ -65,9 +67,7 @@ describe('Testing for Employees Update Functionality', () => {
         cy.get('.button__blue').click();
     });
 
-
-    // Updating with invalid Username
-    it('Updating with valid data', () => {
+    it('Updating with invalid Username', () => {
         cy.visit('/employees');
 
         // Click on the edit button for the first employee
@@ -107,8 +107,7 @@ describe('Testing for Employees Update Functionality', () => {
         cy.get('.button__blue').click();
     });
 
-    // Updating without image 
-    it.only('Updating with valid data', () => {
+    it.only('Updating without image ', () => {
         cy.visit('/employees');
 
         // Click on the edit button for the first employee

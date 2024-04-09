@@ -7,7 +7,7 @@ describe('Testing for Department Sections', () => {
 
         cy.wait(4000)
 
-        cy.visit('departments');
+        cy.visit('/departments');
         
         cy.get('.content__header').should('have.text', 'Department');
         cy.contains('.add__category--title p', 'Add a Department').should('be.visible');
@@ -16,13 +16,13 @@ describe('Testing for Department Sections', () => {
         cy.get('button[type="submit"]').click();
     });
 
-    // Invalid empty Tests
+    
     it('Try to Add empty Department', () => {
         cy.login()
 
         cy.wait(4000)
 
-        cy.visit('departments');
+        cy.visit('/departments');
         
         cy.get('.content__header').should('have.text', 'Department');
         cy.contains('.add__category--title p', 'Add a Department').should('be.visible');
@@ -31,13 +31,13 @@ describe('Testing for Department Sections', () => {
         cy.get('button[type="submit"]').click();
     });
 
-    // Invalid special character Tests Data
+    
     it('Try to Add Department with special character', () => {
         cy.login()
 
         cy.wait(4000)
 
-        cy.visit('departments');
+        cy.visit('/departments');
         
         cy.get('.content__header').should('have.text', 'Department');
         cy.contains('.add__category--title p', 'Add a Department').should('be.visible');
@@ -46,13 +46,13 @@ describe('Testing for Department Sections', () => {
         cy.get('button[type="submit"]').click();
     });
 
-    // Invalid leading character Tests Data
-    it('Try to Add Department with special character', () => {
+   
+    it('Try to Add Department with leading character', () => {
         cy.login()
 
         cy.wait(4000)
 
-        cy.visit('departments');
+        cy.visit('/departments');
         
         cy.get('.content__header').should('have.text', 'Department');
         cy.contains('.add__category--title p', 'Add a Department').should('be.visible');
@@ -61,13 +61,13 @@ describe('Testing for Department Sections', () => {
         cy.get('button[type="submit"]').click();
     });
 
-    // Duplicate Value
+     
     it('Try to Add Department with Duplicate value', () => {
         cy.login()
 
         cy.wait(4000)
 
-        cy.visit('departments');
+        cy.visit('/departments');
         
         cy.get('.content__header').should('have.text', 'Department');
         cy.contains('.add__category--title p', 'Add a Department').should('be.visible');
@@ -76,12 +76,11 @@ describe('Testing for Department Sections', () => {
         cy.get('button[type="submit"]').click();
     });
 
-
-    //Deleting the Department
+ 
     it('Deleting the Department', ()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('departments')
+        cy.visit('/departments')
         // Delete Icon 
         cy.get(':nth-child(1) > .button-gap > .delete__button').click()
 
@@ -89,11 +88,11 @@ describe('Testing for Department Sections', () => {
         cy.get('.delete__confirmation--button > .button__blue').click()
     });
 
-    // Updating department
+ 
     it('Updating Department with valid data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('departments')
+        cy.visit('/departments')
         cy.get(':nth-child(1) > .button-gap > .edit__button').click()
         cy.get('.universal__td--border').type(department)
      
@@ -106,11 +105,11 @@ describe('Testing for Department Sections', () => {
     });
 
 
-     // Updating department with invalid data
-     it('Updating Department with invalid data',()=>{
+   
+     it('Updating Department with invalid (special character) data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('departments')
+        cy.visit('/departments')
         cy.get(':nth-child(1) > .button-gap > .edit__button').click()
         cy.get('.universal__td--border').type('demo@')
     
@@ -121,11 +120,11 @@ describe('Testing for Department Sections', () => {
         //cy.get('[type="button"]').should('be.visible').click();
     });
 
-    // Updating department with blank data
-    it.only('Updating Department with invalid data',()=>{
+ 
+    it.only('Updating Department with invalid (Blank) data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('departments')
+        cy.visit('/departments')
         cy.get(':nth-child(1) > .button-gap > .edit__button').click()
         cy.get('.universal__td--border').type(' ')
     

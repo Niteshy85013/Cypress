@@ -2,7 +2,8 @@ import { faker } from "@faker-js/faker"
 
 
 describe('Input Fields', ()=>{
-    it.only('Checking for Inputfields',()=>{
+
+    it('Checking for Inputfields',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
 
         const name = faker.person.firstName()
@@ -86,8 +87,11 @@ describe('Input Fields', ()=>{
         cy.get('#HTML10 > .widget-content > button').dblclick()
     });
 
+    it.only('Drag and Drop',()=>{
+        cy.visit('https://testautomationpractice.blogspot.com/')
+        cy.get('#draggable').drag('#droppable')
+    })
     
-
     it('checking the total class with the same name',()=>{
         cy.visit('https://testautomationpractice.blogspot.com/')
         cy.get('.title')

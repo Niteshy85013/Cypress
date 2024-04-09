@@ -1,41 +1,42 @@
 import { faker } from "@faker-js/faker";
 const location = faker.location.city()
+
 describe('Testing for Location Section',()=>{
-    it('Adding Dlocation with valid data',()=>{
+    it('Adding location with valid data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
+        cy.visit('/location')
         cy.get('input[name="location"]').type(location)
-        cy.get('button[type="submit"]').click()
+        cy.get('button[type="submit"]').should('be.visible').click()
+
+        // Assert Message
+        cy.get('.toast__paragraph').should('have.text','Location has been added')
 
     });
 
-    // Invalid Data
-    it('Adding Dlocation with invalid data',()=>{
+    it.only('Adding location with invalid data (Special Character)',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
+        cy.visit('/location')
         cy.get('input[name="location"]').type('location@home')
-        cy.get('button[type="submit"]').click()
+        cy.get('button[type="submit"]').should('be.visible').click()
 
     });
 
-    // Invalid Data (space)
     it('Adding location with blank data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
+        cy.visit('/location')
         cy.get('input[name="location"]').type(' ')
-        cy.get('button[type="submit"]').click()
+        cy.get('button[type="submit"]').should('be.visible').click()
 
     });
 
-    // Update location with valid data
     it('Update location with valid data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click()
+        cy.visit('/location')
+        cy.get(':nth-child(1) > .button-gap > .edit__button').should('be.visible').click()
         cy.get('.universal__td--border').type(location)
 
         // Save Icon
@@ -50,8 +51,8 @@ describe('Testing for Location Section',()=>{
     it('Update location with invalid data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click()
+        cy.visit('/location')
+        cy.get(':nth-child(1) > .button-gap > .edit__button').should('be.visible').click()
         cy.get('.universal__td--border').type('location@demo')
 
         // Save Icon
@@ -66,7 +67,7 @@ describe('Testing for Location Section',()=>{
     it('Update location with space data',()=>{
         cy.login()
         cy.wait(3000)
-        cy.visit('location')
+        cy.visit('/location')
         cy.get(':nth-child(1) > .button-gap > .edit__button').click()
         cy.get('.universal__td--border').type(' ')
 
@@ -96,7 +97,7 @@ describe('Testing for Location Section',()=>{
     });
 
     // Assertion for Heading
-    it.only('Heading Assertion',()=>{
+    it('Heading Assertion',()=>{
         cy.loginsession()
         cy.wait(3000)
         cy.visit('location')
@@ -109,9 +110,4 @@ describe('Testing for Location Section',()=>{
         
 
     });
-
-
-
-
-
 })
