@@ -7,6 +7,11 @@ describe('Testing Resizable',()=>{
     
       cy.get('.ui-resizable').invoke('attr', 'style', `width: ${targetWidth}px; height: ${targetHeight}px;`);
     });
-    
 });
+
+
+
+
+
+
 
