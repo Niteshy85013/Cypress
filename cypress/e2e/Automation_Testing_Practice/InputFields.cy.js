@@ -94,9 +94,7 @@ describe('Input Fields', ()=>{
 
     it.only('iFrame  Testing', () => {
         cy.visit('https://testautomationpractice.blogspot.com/')
-        // Verify page 
-        cy.frameLoaded()
-
+        
         // Title Assertion 
         cy.iframe().find('.title').should('have.text', 'Frames');
 
@@ -104,10 +102,9 @@ describe('Input Fields', ()=>{
         cy.iframe().find('#RESULT_TextField-0').type('Dummy Text');
 
         // Submit Button
-        cy.iframe().find('#FSsubmit').should('be.visible').click()
-    })
-
-})
+        cy.iframe().find('#FSsubmit').should('be.visible').click();
+    });
+});
 
 
 
