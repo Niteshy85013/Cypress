@@ -4,7 +4,7 @@
 // Session
 Cypress.Commands.add('loginsession', (username, password) => {
   cy.session([username, password], () => {
-    cy.visit('login')
+    cy.visit('/login')
     cy.get('input[name="username"]').type(username)
     cy.get('input[name="password"]').type(password)
     cy.get('button[type="submit"]').click();

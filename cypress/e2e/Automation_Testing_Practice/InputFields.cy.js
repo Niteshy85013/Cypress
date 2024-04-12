@@ -1,105 +1,107 @@
 import { faker } from "@faker-js/faker";
-import "cypress-iframe";
+import 'cypress-iframe';
 
 describe("Input Fields", () => {
-  it("Checking for Inputfields", () => {
-    cy.visit("https://testautomationpractice.blogspot.com/");
+    beforeEach(() => {
+        cy.visit("https://testautomationpractice.blogspot.com/");
 
-    const name = faker.person.firstName();
-    const email = faker.internet.email();
-    const phone = faker.phone.number();
+    })
 
-    cy.get("#name").type(name);
-    cy.get("#email").type(email);
-    cy.get("#phone").type(phone);
-    cy.get("#textarea").type("This is a textarea field");
+    it("Checking for Inputfields", () => {
 
-    // Assertion Title
-    //cy.get('.title').should('have.text', 'Automation Testing Practice');
-    //cy.get(':nth-child(45) > [data-layer="Content"]').should('have.text', 'Automation Testing Practice');
-    //cy.contains(':nth-child(45) > [data-layer="Content"]','Automation Testing Practice').should('be.visible')
+        const name = faker.person.firstName();
+        const email = faker.internet.email();
+        const phone = faker.phone.number();
 
-    // For Radio buttons
-    cy.get('input[value="male"]').check();
+        cy.get("#name").type(name);
+        cy.get("#email").type(email);
+        cy.get("#phone").type(phone);
+        cy.get("#textarea").type("This is a textarea field");
 
-    // Aassertion for checkbox
-    cy.get('input[value="male"]').should("be.checked");
+        // Assertion Title
+        //cy.get('.title').should('have.text', 'Automation Testing Practice');
+        //cy.get(':nth-child(45) > [data-layer="Content"]').should('have.text', 'Automation Testing Practice');
+        //cy.contains(':nth-child(45) > [data-layer="Content"]','Automation Testing Practice').should('be.visible')
 
-    // Multiple selection
-    //cy.get('.form-check.form-check-inline input[type="checkbox"]').check();
+        // For Radio buttons
+        cy.get('input[value="male"]').check();
 
-    // Single selection
-    cy.get('input[value="sunday"]').check();
+        // Aassertion for checkbox
+        cy.get('input[value="male"]').should("be.checked");
 
-    // Assertion
-    cy.get('input[value="sunday"]').should("be.checked");
+        // Multiple selection
+        //cy.get('.form-check.form-check-inline input[type="checkbox"]').check();
 
-    // Dropdown  menu
-    cy.get("#country").select("uk");
+        // Single selection
+        cy.get('input[value="sunday"]').check();
 
-    // Assertion
-    cy.get("#country").should("have.value", "uk");
+        // Assertion
+        cy.get('input[value="sunday"]').should("be.checked");
 
-    // Select the options
-    cy.get("#colors").select("Green");
-    // Assertion
-    cy.get('[value="green"]').should("have.value", "green");
+        // Dropdown  menu
+        cy.get("#country").select("uk");
 
-    // DatePicker
-    //cy.get('#datepicker').type('2024-03-19')
-    cy.get("#datepicker").click().type("03/26/2024");
+        // Assertion
+        cy.get("#country").should("have.value", "uk");
 
-    cy.wait(3000);
+        // Select the options
+        cy.get("#colors").select("Green");
+        // Assertion
+        cy.get('[value="green"]').should("have.value", "green");
 
-    //cy.get('.home-link').click()
+        // DatePicker
+        //cy.get('#datepicker').type('2024-03-19')
+        cy.get("#datepicker").click().type("03/26/2024");
 
-    // Table Value Checked
-    cy.get("#productTable").find('input[type="checkbox"]').eq(3).check();
-    // Assertion
-    cy.get("#productTable")
-      .find('input[type="checkbox"]')
-      .eq(3)
-      .should("be.checked");
-    cy.get("#productTable > tbody > :nth-child(4) > :nth-child(2)").should(
-      "have.text",
-      "Product 4"
-    );
-    cy.get("#productTable > tbody > :nth-child(4) > :nth-child(3)").should(
-      "have.text",
-      "$7.99"
-    );
+        cy.wait(3000);
 
-    // Search
-    cy.get("#Wikipedia1_wikipedia-search-input").type("Menu");
-    cy.get(".wikipedia-search-button").click();
+        //cy.get('.home-link').click()
 
-    //Assertion
-    cy.get("#HTML4 > .title").should("have.text", "New Browser Window");
+        // Table Value Checked
+        cy.get("#productTable").find('input[type="checkbox"]').eq(3).check();
+        // Assertion
+        cy.get("#productTable")
+            .find('input[type="checkbox"]')
+            .eq(3)
+            .should("be.checked");
+        cy.get("#productTable > tbody > :nth-child(4) > :nth-child(2)").should(
+            "have.text",
+            "Product 4"
+        );
+        cy.get("#productTable > tbody > :nth-child(4) > :nth-child(3)").should(
+            "have.text",
+            "$7.99"
+        );
 
-    // Alerts
-    cy.get('[onclick="myFunctionAlert()"]').click();
-    cy.wait(3000);
+        // Search
+        cy.get("#Wikipedia1_wikipedia-search-input").type("Menu");
+        cy.get(".wikipedia-search-button").click();
 
-    cy.get('[onclick="myFunctionConfirm()"]').click();
-    cy.wait(5000);
+        //Assertion
+        cy.get("#HTML4 > .title").should("have.text", "New Browser Window");
 
-    cy.get('[onclick="myFunctionPrompt()"]').click();
-    cy.wait(5000);
+        // Alerts
+        cy.get('[onclick="myFunctionAlert()"]').click();
+        cy.wait(3000);
 
-    // dblclick
-    cy.get("#HTML10 > .widget-content > button").dblclick();
-  });
+        cy.get('[onclick="myFunctionConfirm()"]').click();
+        cy.wait(5000);
 
-  it.only("iFrame  Testing", () => {
-    cy.visit("https://testautomationpractice.blogspot.com/");
+        cy.get('[onclick="myFunctionPrompt()"]').click();
+        cy.wait(5000);
 
-    // Title Assertion
-    cy.iframe().find(".title").should("have.text", "Frames");
+        // dblclick
+        cy.get("#HTML10 > .widget-content > button").dblclick();
+    });
 
-    // Input Field
-    cy.iframe().find("#RESULT_TextField-0").type("Dummy Text");
-
-    // Submit Button
-    cy.iframe().find("#FSsubmit").should("be.visible").click();
-  });
-});
+    it.only("iFrame Testing", () => {
+        cy.get('#HTML6').scrollIntoView({ duration: 2000 });
+      
+        cy.frameLoaded('#frame-one796456169')
+          .then(($iframe) => {
+            const $body = $iframe.contents().find('body');
+            cy.wrap($body)
+              .find('input')
+          });
+      });
+})
