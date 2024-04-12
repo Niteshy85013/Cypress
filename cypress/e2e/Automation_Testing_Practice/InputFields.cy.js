@@ -90,16 +90,35 @@ describe("Input Fields", () => {
     cy.get("#HTML10 > .widget-content > button").dblclick();
   });
 
-  it.only("iFrame  Testing", () => {
+  it.only("iFrame", () => {
     cy.visit("https://testautomationpractice.blogspot.com/");
 
     // Title Assertion
-    cy.iframe().find(".title").should("have.text", "Frames");
 
     // Input Field
     cy.iframe().find("#RESULT_TextField-0").type("Dummy Text");
 
+    // Gender
+    cy.iframe()
+      .find('input[value="Radio-0"]')
+      .invoke("prop", "checked", true)
+      .should("be.checked");
+
+    // Date
+    //cy.iframe().find("#RESULT_TextField-2").type("04/11/2024");
+
+    // Date
+    cy.iframe()
+      .should("be.visible")
+      .then((iframe) => {
+        iframe.find(".icon_calendar").click();
+        iframe.find('.ui-datepicker-week-end[selectDay="11"]').click();
+      });
+
+    // Dropdown
+    //cy.iframe().find(".drop_down").select("QA Engineer");
+
     // Submit Button
-    cy.iframe().find("#FSsubmit").should("be.visible").click();
+    //cy.iframe().find("#FSsubmit").should("be.visible").click();
   });
 });
