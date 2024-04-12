@@ -1,153 +1,193 @@
 import { faker } from "@faker-js/faker";
-import 'cypress-file-upload'
+import "cypress-file-upload";
 
 const email = faker.internet.email();
 const name = faker.random.alpha({ count: 10 });
 const maxLength = 5;
 const designation = faker.name.jobTitle().substring(0, maxLength);
- 
- 
 
-describe('Testing for Employees Update Functionality', () => {
-    beforeEach(() => {
-        cy.login();
+describe("Testing for Employees Update Functionality", () => {
+  beforeEach(() => {
+    cy.login();
+    cy.visit("/employees");
+  });
+
+  it("Updating with valid data", () => {
+    // Click on the edit button for the first employee
+    cy.get(":nth-child(1) > .button-gap > .edit__button").click();
+
+    // Update username
+    cy.get('input[name="username"]').clear().type(name);
+
+    // Check the "Temporary" option
+    cy.get('[value="Temporary"]').check();
+
+    // Verify that the "Temporary" option is checked
+    cy.get('[value="Temporary"]').should("be.checked");
+
+    // Update designation
+
+    cy.get('input[name="designation"]').clear().type(designation);
+
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
+    // Update email
+    cy.get('input[name="email"]').clear().type(email);
+
+    // Update phone number
+    cy.get('input[name="phoneNumber"]').clear().type("+9779898989898");
+
+    // Delete the previous image (if needed)
+    cy.get(".profile__button--container > .button__red").click();
+
+    cy.wait(3000);
+    // Upload a new image
+    cy.fixture("profile.png").then((fileContent) => {
+      cy.get('input[type="file"]').attachFile("profile.png");
     });
 
-    it('Updating with valid data', () => {
-        cy.visit('/employees');
+    // Click on the "Save Changes" button
+    cy.get(".button__blue").should("be.visible").click();
 
-        // Click on the edit button for the first employee
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click();
+    cy.get(".toast__paragraph").should(
+      "have.text",
+      "Employee Edited Successfully"
+    );
+  });
 
-        // Update username
-        cy.get('input[name="username"]').clear().type(name);
+  it("Attempt to Updating without any changes in data", () => {
+    // Click on the edit button for the first employee
+    cy.get(":nth-child(1) > .button-gap > .edit__button").click();
 
-        // Check the "Temporary" option
-        cy.get('[value="Temporary"]').check();
+    cy.wait(3000);
+    // Click on the "Save Changes" button
+    cy.get(".button__blue").click();
+  });
 
-        // Verify that the "Temporary" option is checked
-        cy.get('[value="Temporary"]').should('be.checked');
+  it("Updating with invalid Username", () => {
+    // Click on the edit button for the first employee
+    cy.get(":nth-child(1) > .button-gap > .edit__button").click();
 
-        // Update designation
-        
-        cy.get('input[name="designation"]').clear().type(designation);
+    // Update username
+    cy.get('input[name="username"]').clear().type("user123");
 
-        cy.get(':nth-child(4) > .input-enabled').select('QA')
-        // Update email
-        cy.get('input[name="email"]').clear().type(email);
+    // Check the "Temporary" option
+    cy.get('[value="Temporary"]').check();
 
-        // Update phone number
-        cy.get('input[name="phoneNumber"]').clear().type('+9779898989898');
+    // Verify that the "Temporary" option is checked
+    cy.get('[value="Temporary"]').should("be.checked");
 
-        // Delete the previous image (if needed)
-        cy.get('.profile__button--container > .button__red').click();
+    // Update designation
 
-        cy.wait(3000)
-        // Upload a new image
-        cy.fixture('profile.png').then((fileContent) => {
-            cy.get('input[type="file"]').attachFile('profile.png');
-        });
+    cy.get('input[name="designation"]').clear().type(designation);
 
-        
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
 
-        // Click on the "Save Changes" button
-        cy.get('.button__blue').should('be.visible').click();
+    // Update email
+    cy.get('input[name="email"]').clear().type(email);
 
-        cy.get('.toast__paragraph').should('have.text','Employee Edited Successfully')
+    // Update phone number
+    cy.get('input[name="phoneNumber"]').clear().type("+9779898989898");
+
+    // Delete the previous image (if available)
+    cy.get(".profile__button--container > .button__red").click();
+
+    // Upload a new image
+    cy.fixture("profile.png").then((fileContent) => {
+      cy.get('input[type="file"]').attachFile("profile.png");
     });
 
-   
-    it('Attempt to Updating without any changes in data', () => {
-        cy.visit('/employees');
+    // Click on the "Save Changes" button
+    cy.get(".button__blue").click();
 
-        // Click on the edit button for the first employee
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click();
+    // validation Error Message (Username)
+    cy.get(".error-message").should(
+      "have.text",
+      "Invalid name. Name must contain only alphabetic characters"
+    );
+  });
 
-        // Click on the "Save Changes" button
-        cy.get('.button__blue').click();
-    });
+  it("Updating without image ", () => {
+    // Click on the edit button for the first employee
+    cy.get(":nth-child(1) > .button-gap > .edit__button").click();
 
-    it('Updating with invalid Username', () => {
-        cy.visit('/employees');
+    // Update username
+    cy.get('input[name="username"]').clear().type(name);
 
-        // Click on the edit button for the first employee
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click();
+    // Check the "Temporary" option
+    cy.get('[value="Temporary"]').check();
 
-        // Update username
-        cy.get('input[name="username"]').clear().type('user123');
+    // Verify that the "Temporary" option is checked
+    cy.get('[value="Temporary"]').should("be.checked");
 
-        // Check the "Temporary" option
-        cy.get('[value="Temporary"]').check();
+    // Update designation
 
-        // Verify that the "Temporary" option is checked
-        cy.get('[value="Temporary"]').should('be.checked');
+    cy.get('input[name="designation"]').clear().type(designation);
 
-        // Update designation
-        
-        cy.get('input[name="designation"]').clear().type(designation);
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
 
+    // Update email
+    cy.get('input[name="email"]').clear().type(email);
 
-        cy.get(':nth-child(4) > .input-enabled').select('QA')
+    // Update phone number
+    cy.get('input[name="phoneNumber"]').clear().type("+9779898989898");
 
-        // Update email
-        cy.get('input[name="email"]').clear().type(email);
+    // Delete the previous image (if available)
+    cy.get(".profile__button--container > .button__red").click();
 
-        // Update phone number
-        cy.get('input[name="phoneNumber"]').clear().type('+9779898989898');
+    // Upload a new image
+    // cy.fixture('profile.png').then((fileContent) => {
+    //     cy.get('input[type="file"]').attachFile('profile.png');
+    // });
 
-        // Delete the previous image (if available)
-        cy.get('.profile__button--container > .button__red').click();
+    // Click on the "Save Changes" button
+    cy.get(".user__profile--btn > .button__blue").click();
 
-        // Upload a new image
-        cy.fixture('profile.png').then((fileContent) => {
-            cy.get('input[type="file"]').attachFile('profile.png');
-        });
+    // Toast Message Assertion
+    cy.get(".toast__paragraph").should(
+      "have.text",
+      "Employee Edited Successfully"
+    );
+  });
+  it.only("Updating without any data", () => {
+    // Click on the edit button for the first employee
+    cy.get(":nth-child(1) > .button-gap > .edit__button").click();
 
-        // Click on the "Save Changes" button
-        cy.get('.button__blue').click();
-    });
+    // Update username
+    cy.get('input[name="username"]').clear();
 
-    it.only('Updating without image ', () => {
-        cy.visit('/employees');
+    // Check the "Temporary" option
+    cy.get('[value="Temporary"]').check();
 
-        // Click on the edit button for the first employee
-        cy.get(':nth-child(1) > .button-gap > .edit__button').click();
+    // Verify that the "Temporary" option is checked
+    cy.get('[value="Temporary"]').should("be.checked");
 
-        // Update username
-        cy.get('input[name="username"]').clear().type(name);
+    // Update designation
 
-        // Check the "Temporary" option
-        cy.get('[value="Temporary"]').check();
+    cy.get('input[name="designation"]').clear();
 
-        // Verify that the "Temporary" option is checked
-        cy.get('[value="Temporary"]').should('be.checked');
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
 
-        // Update designation
-        
-        cy.get('input[name="designation"]').clear().type(designation);
+    // Update email
+    cy.get('input[name="email"]').clear();
 
+    // Update phone number
+    cy.get('input[name="phoneNumber"]').clear();
 
-        cy.get(':nth-child(4) > .input-enabled').select('QA')
+    // Delete the previous image (if available)
+    cy.get(".profile__button--container > .button__red").click();
 
-        // Update email
-        cy.get('input[name="email"]').clear().type(email);
+    // Upload a new image
+    // cy.fixture('profile.png').then((fileContent) => {
+    //     cy.get('input[type="file"]').attachFile('profile.png');
+    // });
 
-        // Update phone number
-        cy.get('input[name="phoneNumber"]').clear().type('+9779898989898');
+    // Click on the "Save Changes" button
+    cy.get(".user__profile--btn > .button__blue").click();
 
-        // Delete the previous image (if available)
-        cy.get('.profile__button--container > .button__red').click();
-
-        // Upload a new image
-        // cy.fixture('profile.png').then((fileContent) => {
-        //     cy.get('input[type="file"]').attachFile('profile.png');
-        // });
-
-        // Click on the "Save Changes" button
-        cy.get('.user__profile--btn > .button__blue').click();
-    });
+    // Toast Message Assertion
+    cy.get(".toast__paragraph").should(
+      "have.text",
+      "Employee Edited Successfully"
+    );
+  });
 });
-
-
-
-

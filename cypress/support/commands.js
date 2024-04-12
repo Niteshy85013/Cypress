@@ -45,7 +45,6 @@ Cypress.Commands.add("generateRandomDates", () => {
       .split("T")[0];
     return randomDate;
   };
-
   const randomDate1 = getRandomDate(1);
   const randomDate2 = getRandomDate(2);
 

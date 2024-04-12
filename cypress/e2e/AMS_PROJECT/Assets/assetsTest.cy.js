@@ -8,7 +8,7 @@ describe("Testing for Assets Section", () => {
     cy.login();
   });
   // Add with valid data
-  it.only("Assets Add with valid data", () => {
+  it("Assets Add with valid data", () => {
     cy.visit("/assets");
     cy.get(".button__blue").click();
     cy.get('input[name="productName"]').type(name);
@@ -78,19 +78,30 @@ describe("Testing for Assets Section", () => {
     cy.get(".form--content__right > :nth-child(2) > .select__enabled").select(
       "Hardware"
     );
-    cy.wait(2000);
+
+    // Category
     cy.get(".form--content__right")
       .find(":nth-child(3) > .select__enabled")
-      .select("Electronics");
+      .select("Computer");
 
+    // Location
     cy.get(".form--content__left")
       .find(":nth-child(2) > .select__enabled")
-      .select("Top Floor");
+      .select("Top Floorss");
 
+    // Assign TO
     cy.get(".form--content__left")
       .find(":nth-child(3) > .select__enabled")
-      .select("rahul");
+      .select("Amod Suman");
+
     cy.get(".assets__form--btn > .button__blue").click();
+    cy.wait(2000);
+
+    // validation Error Message Assertion
+    cy.get(".error-message").should(
+      "have.text",
+      "Please enter a valid product name. It can include capital letters, small letters, numbers,dash, spaces and numbers."
+    );
   });
 
   // Add With Blank Product Name
@@ -104,23 +115,68 @@ describe("Testing for Assets Section", () => {
       "Software"
     );
     cy.wait(2000);
+
+    // Category
     cy.get(".form--content__right")
       .find(":nth-child(3) > .select__enabled")
-      .select("Electronics");
+      .select("Computer");
+
+    // Location
     cy.get(".form--content__left")
       .find(":nth-child(2) > .select__enabled")
-      .select("Top Floor");
+      .select("Top Floorss");
+
+    // Assign To
     cy.get(".form--content__left")
       .find(":nth-child(3) > .select__enabled")
-      .select("rahul");
+      .select("Amod Suman");
+
+    // Save Button
     cy.get(".assets__form--btn > .button__blue").click();
+
+    // validation Error Message Assertion
+    cy.get(".error-message").should(
+      "have.text",
+      "Product name must be at least 2 characters long"
+    );
   });
 
-  // Attemp to save the data with all fields empty
+  // Attempt to save the data with all fields empty
   it("Attemp to save the data with all fields empty", () => {
     cy.visit("/assets");
     cy.get(".button__blue").click();
     cy.get(".assets__form--btn > .button__blue").click();
+
+    // validation Error Message Assertion
+    // Product Name
+    cy.get(".input__field > .error-message").should(
+      "have.text",
+      "Please enter a product name"
+    );
+
+    // Asset Type
+    cy.get(".form--content__right > :nth-child(2) > .error-message").should(
+      "have.text",
+      "Please choose an asset type"
+    );
+
+    //Category
+    cy.get(".form--content__right > :nth-child(3) > .error-message").should(
+      "have.text",
+      "Please select an category"
+    );
+
+    // Location
+    cy.get(".form--content__left > :nth-child(2) > .error-message").should(
+      "have.text",
+      "Please select an location"
+    );
+
+    // Assign To
+    cy.get(".form--content__left > :nth-child(3) > .error-message").should(
+      "have.text",
+      "Please select an assigned employee"
+    );
   });
 
   // Update Assets
@@ -134,14 +190,14 @@ describe("Testing for Assets Section", () => {
     // Selecting category
     cy.get(".form--content__right")
       .find(":nth-child(3) > .select__enabled")
-      .select("Electronics");
+      .select("Computer");
     cy.wait(3000);
     cy.get(".status").click();
     cy.get(".assets__form--btn > .button__blue").click();
   });
 
   //Deleting the Assets
-  it("Deleting the Assets", () => {
+  it.only("Deleting the Assets", () => {
     cy.visit("/assets");
     cy.url().should("contains", "assets");
     // Delete Icon
@@ -149,6 +205,11 @@ describe("Testing for Assets Section", () => {
 
     // Proceed Button
     cy.get(".delete__confirmation--button > .button__blue").click();
+
+    cy.get(".toast__paragraph").should(
+      "have.text",
+      "Asset Deleted Successfully"
+    );
   });
 
   //View Detail of Asstes

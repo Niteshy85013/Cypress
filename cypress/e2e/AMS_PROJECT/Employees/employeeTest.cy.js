@@ -1,87 +1,113 @@
 import { faker } from "@faker-js/faker";
-import 'cypress-file-upload'
+import "cypress-file-upload";
 
 const email = faker.internet.email();
 
-describe('Employees section Testing', () => {
-    beforeEach(()=>{
-        cy.login()
-        
+describe("Employees section Testing", () => {
+  beforeEach(() => {
+    cy.login();
+    cy.visit("/employees");
+  });
+  // Adding Employees with valid data
+  it("Adding Employees", () => {
+    cy.get(".button__blue").should("be.visible").click();
+    cy.get('input[name="username"]').type("DemoAdmin");
+    cy.get('input[name="designation"]').type("QA");
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
+
+    cy.get('input[name="email"]').type(email);
+
+    cy.get('input[name="phoneNumber"]').type("9852011112");
+
+    cy.fixture("demo.jpg").then((fileContent) => {
+      cy.get('input[type="file"]').attachFile("demo.jpg");
     });
 
-    // Adding Employees with valid data
-    it.only('Adding Employees',()=>{
+    cy.wait(2000);
+    cy.get(".user__profile--btn > .button__blue").should("be.visible").click();
 
-        cy.visit('/employees')
-        cy.get('.button__blue').should('be.visible').click()
-        cy.get('input[name="username"]').type('DemoAdmin')
-        cy.get('input[name="designation"]').type('QA')
-        cy.get(':nth-child(4) > .input-enabled').select('QA')
-      
-        cy.get('input[name="email"]').type(email)
+    // Toast message assertion
+    cy.get(".toast__paragraph").should("have.text", "Employee has been added");
+  });
 
-        cy.get('input[name="phoneNumber"]').type('9852011112')
+  // Adding Employees with Existing Data(Name and Phone Number)
+  it("Adding Employees with Existing Data(Name and Phone Number)", () => {
+    cy.get(".button__blue").should("be.visible").click();
+    cy.get('input[name="username"]').type("DemoAdmin");
+    cy.get('input[name="designation"]').type("QA");
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
 
-        cy.fixture('demo.jpg').then((fileContent) => {
-            cy.get('input[type="file"]').attachFile('demo.jpg');
-          });
+    cy.get('input[name="email"]').type(email);
 
-          cy.wait(2000)
-        cy.get('.user__profile--btn > .button__blue').should('be.visible').click()
+    cy.get('input[name="phoneNumber"]').type("9852011111");
 
-         // Toast message assertion
-        cy.get('.toast__paragraph').should('have.text','Employee has been added')
+    cy.fixture("demo.jpg").then((fileContent) => {
+      cy.get('input[type="file"]').attachFile("demo.jpg");
     });
 
-    // Adding Employees with Existing Data
-    it('Adding Employees',()=>{
+    cy.wait(2000);
 
-        cy.visit('/employees')
-        cy.get('.button__blue').should('be.visible').click()
-        cy.get('input[name="username"]').type('DemoAdmin')
-        cy.get('input[name="designation"]').type('QA')
-        cy.get(':nth-child(4) > .input-enabled').select('Books')
-      
-        cy.get('input[name="email"]').type(email)
+    cy.get(".user__profile--btn > .button__blue").should("be.visible").click();
 
-        cy.get('input[name="phoneNumber"]').type('9852011111')
+    // Toast Message Assertion
+    cy.get(".toast__paragraph").should(
+      "have.text",
+      "Phone number already exists !!"
+    );
+  });
 
-        cy.fixture('demo.jpg').then((fileContent) => {
-            cy.get('input[type="file"]').attachFile('demo.jpg');
-          });
+  // Adding  Employee without Image
+  it("Adding  Employee without Image", () => {
+    cy.get(".button__blue").should("be.visible").click();
+    cy.get('input[name="username"]').type("DemoAdmin");
+    cy.get('input[name="designation"]').type("QA");
+    cy.get(":nth-child(4) > .input-enabled").select("Music");
 
-          cy.wait(2000)
+    cy.get('input[name="email"]').type(email);
 
-        cy.get('.user__profile--btn > .button__blue').should('be.visible').click()
-    });
+    cy.get('input[name="phoneNumber"]').type("9852011100");
 
+    cy.wait(2000);
 
-    // Adding  Employee without Image 
-    it('Adding Employees',()=>{
+    cy.get(".user__profile--btn > .button__blue").should("be.visible").click();
+    // Toast Message Assertion
+    cy.get(".toast__paragraph").should("have.text", "Please Upload Image !!");
+  });
 
-        cy.visit('/employees')
-        cy.get('.button__blue').should('be.visible').click()
-        cy.get('input[name="username"]').type('DemoAdmin')
-        cy.get('input[name="designation"]').type('QA')
-        cy.get(':nth-child(4) > .input-enabled').select('Books')
-      
-        cy.get('input[name="email"]').type(email)
+  // Submitting the form without entering data
+  it.only("Submitting the form without entering data", () => {
+    cy.get(".button__blue").should("be.visible").click();
 
-        cy.get('input[name="phoneNumber"]').type('9852011111')
+    cy.get(".user__profile--btn > .button__blue").should("be.visible").click();
 
-          cy.wait(2000)
+    // Name Validation Error Message
+    cy.get(":nth-child(1) > .input__field > .error-message").should(
+      "have.text",
+      "Please enter your name"
+    );
 
-        cy.get('.user__profile--btn > .button__blue').should('be.visible').click()
-    });
+    // Degination Validation Error Message
+    cy.get(":nth-child(3) > .input__field > .error-message").should(
+      "have.text",
+      "Please enter your designation"
+    );
 
-    // Submitting the form without entering data
-    it('Adding Employees',()=>{
+    // Department Validation Error Message
+    cy.get(":nth-child(4) > .error-message").should(
+      "have.text",
+      "Please select department"
+    );
 
-        cy.visit('/employees')
-        cy.get('.button__blue').should('be.visible').click()
-        
+    // Email Validation Error Message
+    cy.get(":nth-child(5) > .input__field > .error-message").should(
+      "have.text",
+      "Please enter your email address"
+    );
 
-        cy.get('.user__profile--btn > .button__blue').should('be.visible').click()
-    });
-    
+    // Phone Number Validation Error Message
+    cy.get(":nth-child(6) > .input__field > .error-message").should(
+      "have.text",
+      "Phone number must have +977 and 10 numbers."
+    );
+  });
 });
