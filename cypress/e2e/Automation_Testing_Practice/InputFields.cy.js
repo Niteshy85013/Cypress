@@ -16,6 +16,11 @@ describe("Input Fields", () => {
     cy.get("#phone").type(phone);
     cy.get("#textarea").type("This is a textarea field");
 
+    // Assertion Title
+    //cy.get('.title').should('have.text', 'Automation Testing Practice');
+    //cy.get(':nth-child(45) > [data-layer="Content"]').should('have.text', 'Automation Testing Practice');
+    //cy.contains(':nth-child(45) > [data-layer="Content"]','Automation Testing Practice').should('be.visible')
+
     // For Radio buttons
     cy.get('input[value="male"]').check();
 
