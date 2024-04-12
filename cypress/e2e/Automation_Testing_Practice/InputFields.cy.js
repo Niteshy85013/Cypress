@@ -2,9 +2,11 @@ import { faker } from "@faker-js/faker";
 import "cypress-iframe";
 
 describe("Input Fields", () => {
-  it("Checking for Inputfields", () => {
+  beforeEach(() => {
     cy.visit("https://testautomationpractice.blogspot.com/");
+  });
 
+  it("Checking for Inputfields", () => {
     const name = faker.person.firstName();
     const email = faker.internet.email();
     const phone = faker.phone.number();
@@ -90,35 +92,30 @@ describe("Input Fields", () => {
     cy.get("#HTML10 > .widget-content > button").dblclick();
   });
 
-  it.only("iFrame", () => {
-    cy.visit("https://testautomationpractice.blogspot.com/");
+  it.only("iFrame Testing", () => {
+    cy.get("#HTML6").scrollIntoView({ duration: 2000 });
 
-    // Title Assertion
+    cy.frameLoaded("#frame-one796456169").then(($iframe) => {
+      const $body = $iframe.contents().find("body");
 
-    // Input Field
-    cy.iframe().find("#RESULT_TextField-0").type("Dummy Text");
+      // Input Field
+      cy.wrap($body).find("#RESULT_TextField-0").type("Dummy Text");
 
-    // Gender
-    cy.iframe()
-      .find('input[value="Radio-0"]')
-      .invoke("prop", "checked", true)
-      .should("be.checked");
+      // Radio button
+      cy.wrap($body)
+        .find('input[value="Radio-0"]')
+        .invoke("prop", "checked", true)
+        .should("be.checked");
 
-    // Date
-    //cy.iframe().find("#RESULT_TextField-2").type("04/11/2024");
+      // Random Date (Getting from custom command)
+      cy.wrap($body).find("#RESULT_TextField-2").type("04/11/2024");
 
-    // Date
-    cy.iframe()
-      .should("be.visible")
-      .then((iframe) => {
-        iframe.find(".icon_calendar").click();
-        iframe.find('.ui-datepicker-week-end[selectDay="11"]').click();
-      });
+      // Dropdown
+      cy.wrap($body).find(".drop_down").select("QA Engineer");
+      cy.wait(2000);
 
-    // Dropdown
-    //cy.iframe().find(".drop_down").select("QA Engineer");
-
-    // Submit Button
-    //cy.iframe().find("#FSsubmit").should("be.visible").click();
+      // Submit Button
+      //cy.wrap($body).find("#FSsubmit").should("be.visible").click();
+    });
   });
 });

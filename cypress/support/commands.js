@@ -10,6 +10,13 @@ Cypress.Commands.add("loginsession", (username, password) => {
 });
 
 Cypress.Commands.add("login", () => {
+  Cypress.on("uncaught:exception", (err, runnable) => {
+    return false;
+  });
+  cy.loginsession("admin", "Adminadmin1!");
+});
+
+Cypress.Commands.add("login", () => {
   cy.loginsession("admin", "Adminadmin1!");
 });
 
@@ -45,8 +52,8 @@ Cypress.Commands.add("generateRandomDates", () => {
       .split("T")[0];
     return randomDate;
   };
-  const randomDate1 = getRandomDate(1);
-  const randomDate2 = getRandomDate(2);
+  const randomDate1 = getRandomDate(123);
+  const randomDate2 = getRandomDate(456);
 
   return { randomDate1, randomDate2 };
 });
