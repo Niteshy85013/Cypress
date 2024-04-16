@@ -1,10 +1,11 @@
 describe("Testing for Filter section", () => {
   beforeEach(() => {
     cy.login();
+    cy.visit("/procurement");
   });
 
   it("Searching with all data", () => {
-    cy.visit("/procurement");
+    
 
     // Filter Button
     cy.get(".filter--button").click();

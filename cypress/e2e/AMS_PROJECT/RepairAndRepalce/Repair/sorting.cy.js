@@ -1,13 +1,10 @@
-describe('Testing for Sorting Function', () => {
-    beforeEach(()=>{
-        cy.login()
-    })
+describe("Testing for Sorting Function", () => {
+  beforeEach(() => {
+    cy.login();
+    cy.visit("/repair");
+  });
 
-    it('Sorting with Name', () => {
-        cy.visit('/repair')
-
-        cy.get('thead > tr > :nth-child(2)').click()
-        
-    });
-    
+  it("Sorting with Name", () => {
+    cy.get("thead > tr > :nth-child(2)").click();
+  });
 });

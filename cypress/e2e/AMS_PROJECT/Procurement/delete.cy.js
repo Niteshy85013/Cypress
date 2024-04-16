@@ -1,10 +1,11 @@
 describe('Testing for Delete Function', () => {
     beforeEach(()=>{
         cy.login()
+         cy.visit("/procurement");
     })
 
     it.only('Delete Functionality',()=>{
-        cy.visit('/procurement')
+       
 
         // Delete Icon
         cy.get(':nth-child(1) > .button-gap > .delete__button').should('be.visible').click()

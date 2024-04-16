@@ -109,5 +109,6 @@ describe("Employees section Testing", () => {
       "have.text",
       "Phone number must have +977 and 10 numbers."
     );
+    cy.get(".user__profile--btn > .button__blue").should("be.visible").click();
   });
 });

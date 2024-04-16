@@ -148,6 +148,7 @@ describe("Testing for Employees Update Functionality", () => {
       "Employee Edited Successfully"
     );
   });
+  
   it.only("Updating without any data", () => {
     // Click on the edit button for the first employee
     cy.get(":nth-child(1) > .button-gap > .edit__button").click();

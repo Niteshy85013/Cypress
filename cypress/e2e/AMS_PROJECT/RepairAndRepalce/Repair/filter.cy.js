@@ -1,11 +1,11 @@
 describe("Filter section Testing", () => {
   beforeEach(() => {
     cy.login();
+    cy.visit("/repair");
   });
 
   // Selecting the filter fields
   it.only("Filter Section", () => {
-    cy.visit("/repair");
     cy.get(".filter--button").should("be.visible").click();
     cy.get(".group__form > :nth-child(1) > .input-enabled").select("Furniture");
     cy.get(":nth-child(2) > .input-enabled").select("pending");
@@ -33,7 +33,6 @@ describe("Filter section Testing", () => {
 
   // Filter by Category
   it("Filter by category Section", () => {
-    cy.visit("/repair");
     cy.get(".filter--button").should("be.visible").click();
 
     cy.get(".group__form > :nth-child(1) > .input-enabled").select("Furniture");
@@ -43,7 +42,6 @@ describe("Filter section Testing", () => {
 
   // Filter by Category
   it("Filter by category Section", () => {
-    cy.visit("/repair");
     cy.get(".filter--button").should("be.visible").click();
 
     cy.get(".group__form > :nth-child(1) > .input-enabled").select("Computer");

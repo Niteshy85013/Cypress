@@ -2,10 +2,11 @@ import { faker } from "@faker-js/faker";
 const location = faker.location.city();
 
 describe("Testing for Location Section", () => {
+  beforeEach(()=>{
+  cy.login();
+     cy.visit("/location");
+  })
   it("Adding location with valid data", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get('input[name="location"]').type(location);
     cy.get('button[type="submit"]').should("be.visible").click();
 
@@ -14,25 +15,16 @@ describe("Testing for Location Section", () => {
   });
 
   it.only("Adding location with invalid data (Special Character)", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get('input[name="location"]').type("location@home");
     cy.get('button[type="submit"]').should("be.visible").click();
   });
 
   it("Adding location with blank data", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get('input[name="location"]').type(" ");
     cy.get('button[type="submit"]').should("be.visible").click();
   });
 
   it("Update location with valid data", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get(":nth-child(1) > .button-gap > .edit__button")
       .should("be.visible")
       .click();
@@ -49,9 +41,6 @@ describe("Testing for Location Section", () => {
 
   // Update location with Invalid data
   it("Update location with invalid data", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get(":nth-child(1) > .button-gap > .edit__button")
       .should("be.visible")
       .click();
@@ -68,9 +57,6 @@ describe("Testing for Location Section", () => {
 
   // Update location with Invalid space data
   it("Update location with space data", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("/location");
     cy.get(":nth-child(1) > .button-gap > .edit__button").click();
     cy.get(".universal__td--border").type(" ");
 
@@ -85,9 +71,6 @@ describe("Testing for Location Section", () => {
 
   // Delete particular Location
   it("Delete the particular location", () => {
-    cy.login();
-    cy.wait(3000);
-    cy.visit("location");
 
     // Delete Icon
     cy.get(":nth-child(1) > .button-gap > .delete__button").click();
@@ -101,10 +84,6 @@ describe("Testing for Location Section", () => {
 
   // Assertion for Heading
   it("Heading Assertion", () => {
-    cy.loginsession();
-    cy.wait(3000);
-    cy.visit("location");
-
     // Heading Assertion
     cy.contains(".add__category--title p", "Add a Location").should(
       "be.visible"

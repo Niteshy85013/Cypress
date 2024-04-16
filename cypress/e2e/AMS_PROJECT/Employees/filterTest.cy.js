@@ -1,10 +1,11 @@
 describe('Test for Filter section',()=>{
     beforeEach(()=>{
         cy.login()
+        cy.visit("/employees");
     })
 
     it('Filtering Data',()=>{
-        cy.visit('/employees')
+        
         cy.get('.filter--button').click()
 
         // Selecting Departmeent name
@@ -23,7 +24,6 @@ describe('Test for Filter section',()=>{
     });
 
     it('Only Department Filter selected',()=>{
-        cy.visit('/employees')
         cy.get('.filter--button').click()
 
         // Selecting Departmeent name
@@ -39,7 +39,7 @@ describe('Test for Filter section',()=>{
     });
 
     it('Only Designation Filter selected',()=>{
-        cy.visit('/employees')
+     
         cy.get('.filter--button').click()
     
         cy.get('.select__enabled').select('hrtr')
@@ -54,7 +54,7 @@ describe('Test for Filter section',()=>{
     });
 
     it.only('Filtering department and designation with no employee',()=>{
-        cy.visit('/employees')
+       
         cy.get('.filter--button').click()
 
         // Selecting Departmeent name
@@ -76,7 +76,7 @@ describe('Test for Filter section',()=>{
     });
 
     it('Checking Button Works',()=>{
-        cy.visit('/employees')
+      
         cy.get('.filter--button').should('be.visible').click()
         cy.get('.filter__hide').should('be.visible').click()
     })

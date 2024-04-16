@@ -7,6 +7,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // config.on('uncaught:exception', () => false);
     },
-    chromeWebSecurity: false,
+    chromeWebSecurity: true,
   },
 });
